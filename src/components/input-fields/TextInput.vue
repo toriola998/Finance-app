@@ -22,7 +22,7 @@
       <div className="absolute right-2 top-[2.4rem]" v-if="type === 'password'">
          <button type="button" @click="togglePassword">
             <img
-               :src="`/icons/${isPasswordVisible ? 'eye-open.svg' : 'eye-open.svg'}`"
+               :src="`/assets/icons/${isPasswordVisible ? 'icon-hide-password.svg' : 'icon-show-password.svg'}`"
                alt="show/hide password"
             />
          </button>

@@ -1,0 +1,60 @@
+button {
+   outline: 0;
+   cursor: pointer;
+}
+
+.btn {
+   @apply rounded-lg h-11 flex justify-center items-center py-4 text-sm font-bold;
+
+   &.black {
+      @apply bg-grey-900 text-white;
+   }
+}
+
+.loader {
+   border: 5px solid transparent;
+   border-radius: 50%;
+   border-top: 5px solid green;
+   border-left: 5px solid green;
+   border-right: 5px solid green;
+   -webkit-animation: spin 0.4s linear infinite; /* Safari */
+   animation: spin 0.4s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+   0% {
+      -webkit-transform: rotate(0deg);
+   }
+   100% {
+      -webkit-transform: rotate(360deg);
+   }
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+.loading {
+   border: 4px solid rgba(255, 255, 255, 0.3); /* Light tint */
+   border-top-color: var(--spinner-color);
+   border-right-color: var(--spinner-color);
+   border-radius: 50%;
+   width: 24px;
+   height: 24px;
+   animation: spin 0.5s linear infinite;
+}
+
+@keyframes loading {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}

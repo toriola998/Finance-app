@@ -1,5 +1,6 @@
 <template>
-   <main>
-      <h1>Hello</h1>
-   </main>
+   <AuthLayout> </AuthLayout>
 </template>
+<script setup>
+import AuthLayout from '@/components/layout/AuthLayout.vue'
+</script>

@@ -2,7 +2,7 @@
    <section class="rounded-xl bg-white px-4 py-6">
       <SectionTitle title="Pots" cta-text="See Details" link="/" />
 
-      <div class="bg-beige-100 p-5 my-5 flex gap-x-5 rounded-xl">
+      <div class="bg-beige-100 p-5 mb-5 flex gap-x-5 rounded-xl">
          <img src="/assets/icons/icon-pot.svg" alt="" />
 
          <div>

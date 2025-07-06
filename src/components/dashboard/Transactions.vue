@@ -2,25 +2,23 @@
    <section class="dashboard-card">
       <SectionTitle title="Transactions" cta-text="View All" link="/" />
 
-      <div class="mt-3">
-         <div
-            :class="`flex-items justify-between py-4 border-b border-grey-100`"
-            v-for="(item, index) in transactions"
-            :key="index"
-         >
-            <div class="flex-items gap-x-4">
-               <img
-                  :src="`/assets/avatars/${item.avatar}`"
-                  alt=""
-                  class="h-8 w-8 rounded-full"
-               />
-               <p class="font-bold text-sm text-grey-900">{{ item.name }}</p>
-            </div>
+      <div
+         :class="`flex-items justify-between py-4 [&:not(:last-child)]:border-b border-grey-100`"
+         v-for="(item, index) in transactions"
+         :key="index"
+      >
+         <div class="flex-items gap-x-4">
+            <img
+               :src="`/assets/avatars/${item.avatar}`"
+               alt=""
+               class="h-8 w-8 rounded-full"
+            />
+            <p class="font-bold text-sm text-grey-900">{{ item.name }}</p>
+         </div>
 
-            <div>
-               <p class="text-sm font-bold text-green">{{ item.price }}</p>
-               <p class="text-xs text-grey-500 mt-2">{{ item.date }}</p>
-            </div>
+         <div>
+            <p class="text-sm font-bold text-green">{{ item.price }}</p>
+            <p class="text-xs text-grey-500 mt-2">{{ item.date }}</p>
          </div>
       </div>
    </section>

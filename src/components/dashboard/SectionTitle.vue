@@ -1,5 +1,5 @@
 <template>
-   <div class="flex-items justify-between">
+   <div class="flex-items justify-between mb-5">
       <p class="text-grey-900 text-xl font-bold">{{ title }}</p>
       <router-link :to="link" class="text-sm text-grey-500 flex gap-x-3">
          {{ ctaText }}

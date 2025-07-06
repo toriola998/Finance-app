@@ -3,6 +3,7 @@ import AccountSummary from '@/components/dashboard/AccountSummary.vue'
 import Pots from '@/components/dashboard/Pots.vue'
 import PageLayout from '@/components/layout/PageLayout.vue'
 import Transactions from '@/components/dashboard/Transactions.vue'
+import Budget from '@/components/dashboard/Budget.vue'
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import Transactions from '@/components/dashboard/Transactions.vue'
          <AccountSummary />
          <Pots />
          <Transactions />
+         <Budget />
       </div>
    </PageLayout>
 </template>

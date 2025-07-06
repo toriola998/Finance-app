@@ -4,6 +4,7 @@ import Pots from '@/components/dashboard/Pots.vue'
 import PageLayout from '@/components/layout/PageLayout.vue'
 import Transactions from '@/components/dashboard/Transactions.vue'
 import Budget from '@/components/dashboard/Budget.vue'
+import RecurringBills from '@/components/dashboard/RecurringBills.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import Budget from '@/components/dashboard/Budget.vue'
          <Pots />
          <Transactions />
          <Budget />
+         <RecurringBills />
       </div>
    </PageLayout>
 </template>

@@ -44,3 +44,7 @@ button {
 .flex-center {
    @apply flex items-center justify-center;
 }
+
+.dashboard-card {
+   @apply rounded-xl bg-white px-4 py-6;
+}

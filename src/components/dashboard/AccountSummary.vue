@@ -5,7 +5,7 @@
          v-for="(item, index) in summaryData"
          :key="index"
       >
-         <p :class="`text-sm mb-3  ${item.theme.titleColor}`">
+         <p :class="`text-sm mb-3 font-medium  ${item.theme.titleColor}`">
             {{ item.title }}
          </p>
          <p :class="`font-bold text-[32px] ${item.theme.valueColor}`">

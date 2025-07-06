@@ -1,38 +1,18 @@
 <template>
-   <div class="px-4 pt-6 pb-20 bg-beige-100 min-h-screen">
+   <div class="px-4 pt-6 pb-20 md:pb-28 bg-beige-100 min-h-screen">
       <header>
          <h1 class="text-grey-900 font-bold text-[32px] mb-8">Overview</h1>
       </header>
 
       <slot />
 
-      <nav
-         class="bg-grey-900 rounded-t-lg flex justify-between pt-2 md:pb-2 px-4 md:px-10 fixed bottom-0 right-0 left-0"
-      >
-         <router-link
-            :to="item.link"
-            v-for="(item, index) in navLinks"
-            :key="index"
-            exact-active-class="bg-beige-100 rounded-t-lg border-b-4 border-green"
-            class="px-6 py-[10px]"
-         >
-            <img
-               :src="`/assets/icons/${item.icon}`"
-               alt=""
-               :class="`block mx-auto ${isActive(item.link) ? 'filter-green' : ''}`"
-            />
-            <span
-               class="hidden md:block text-center text-xs text-grey-300 mt-2 font-bold"
-               :class="isActive(item.link) ? 'text-grey-900' : ''"
-               >{{ item.text }}</span
-            >
-         </router-link>
-      </nav>
+      <MobileNav :navLinks="navLinks" :isActive="isActive" />
    </div>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router'
+import MobileNav from '../shared/MobileNav.vue'
 
 const route = useRoute()
 
@@ -71,10 +51,3 @@ const navLinks = [
    },
 ]
 </script>
-
-<style scoped>
-.filter-green {
-   filter: brightness(0) saturate(100%) invert(33%) sepia(19%) saturate(1860%)
-      hue-rotate(131deg) brightness(95%) contrast(92%);
-}
-</style>

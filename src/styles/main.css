@@ -46,5 +46,10 @@ button {
 }
 
 .dashboard-card {
-   @apply rounded-xl bg-white px-4 py-6;
+   @apply rounded-xl bg-white px-4 py-6 mt-6;
+}
+
+.filter-green {
+   filter: brightness(0) saturate(100%) invert(33%) sepia(19%) saturate(1860%)
+      hue-rotate(131deg) brightness(95%) contrast(92%);
 }

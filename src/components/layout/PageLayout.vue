@@ -8,16 +8,14 @@
          </header>
 
          <MobileNav :navLinks="navLinks" :isActive="isActive" />
+
+         <slot />
       </div>
 
-      <div class="flex gap-x-10">
-         <DesktopNav
-            :navLinks="navLinks"
-            :isActive="isActive"
-            class="hidden lg:block xl:w-[300px]"
-         />
-         <div class="w-full py-10">
-            <header class="hidden lg:block">
+      <div class="hidden lg:grid grid-cols-[300px_auto] gap-x-10">
+         <DesktopNav :navLinks="navLinks" :isActive="isActive" class="" />
+         <div class="w-full py-10 max-w-[1500px] mx-auto">
+            <header>
                <h1 class="text-grey-900 font-bold text-[32px] mb-8">
                   Overview
                </h1>

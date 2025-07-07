@@ -1,18 +1,38 @@
 <template>
-   <div class="px-4 pt-6 pb-20 md:pb-28 bg-beige-100 min-h-screen">
-      <header>
-         <h1 class="text-grey-900 font-bold text-[32px] mb-8">Overview</h1>
-      </header>
+   <div
+      class="px-4 pt-6 pb-20 lg:pl-0 lg:pb-0 lg:pt-0 md:pb-28 bg-beige-100 min-h-screen"
+   >
+      <div class="lg:hidden">
+         <header>
+            <h1 class="text-grey-900 font-bold text-[32px] mb-8">Overview</h1>
+         </header>
 
-      <slot />
+         <MobileNav :navLinks="navLinks" :isActive="isActive" />
+      </div>
 
-      <MobileNav :navLinks="navLinks" :isActive="isActive" />
+      <div class="flex gap-x-10">
+         <DesktopNav
+            :navLinks="navLinks"
+            :isActive="isActive"
+            class="hidden lg:block xl:w-[300px]"
+         />
+         <div class="w-full py-10">
+            <header class="hidden lg:block">
+               <h1 class="text-grey-900 font-bold text-[32px] mb-8">
+                  Overview
+               </h1>
+            </header>
+
+            <slot />
+         </div>
+      </div>
    </div>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router'
 import MobileNav from '../shared/MobileNav.vue'
+import DesktopNav from '../shared/DesktopNav.vue'
 
 const route = useRoute()
 

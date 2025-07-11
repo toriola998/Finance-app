@@ -18,7 +18,7 @@
                      :class="isActive(item.link) ? 'filter-green' : ''"
                   />
                   <span
-                     class="text-grey-300 font-bold"
+                     class="text-grey-300 font-semibold text-sm"
                      :class="isActive(item.link) ? 'text-grey-900' : ''"
                      >{{ item.text }}</span
                   >

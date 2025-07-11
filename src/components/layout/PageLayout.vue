@@ -4,12 +4,15 @@
    >
       <div class="lg:hidden">
          <header>
-            <h1 class="text-grey-900 font-bold text-[32px] mb-8">Overview</h1>
+            <h1 class="text-grey-900 font-bold text-[32px] mb-8">
+               {{ title }}
+            </h1>
          </header>
 
          <MobileNav :navLinks="navLinks" :isActive="isActive" />
-
-         <slot />
+         <main>
+            <slot />
+         </main>
       </div>
 
       <div class="hidden lg:grid grid-cols-[300px_auto] gap-x-10">
@@ -20,8 +23,9 @@
                   Overview
                </h1>
             </header>
-
-            <slot />
+            <main>
+               <slot />
+            </main>
          </div>
       </div>
    </div>

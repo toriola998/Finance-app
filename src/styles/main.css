@@ -2,6 +2,7 @@
 
 @import 'tailwindcss';
 @import './button.scss';
+@import './table.scss';
 
 * {
    font-family: 'Public Sans', sans-serif;

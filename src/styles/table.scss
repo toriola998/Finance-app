@@ -1,0 +1,43 @@
+.table-container {
+   thead {
+      -webkit-overflow-scrolling: touch;
+      display: table-header-group;
+
+      th {
+         @apply text-grey-500 text-sm;
+      }
+   }
+
+   table {
+      padding-bottom: 5rem;
+      border-collapse: collapse;
+      border-spacing: 0;
+      overflow-x: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+         display: none;
+      }
+   }
+
+   tr th {
+      text-align: justify;
+   }
+
+   td th {
+      border: 1px solid red;
+      padding: 8px;
+   }
+   td {
+      @apply text-black text-sm;
+   }
+}
+
+.table-container {
+   @apply overflow-x-scroll max-w-full;
+}
+
+.table-container::-webkit-scrollbar {
+   display: none;
+}

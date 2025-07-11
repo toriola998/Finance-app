@@ -54,3 +54,7 @@ button {
    filter: brightness(0) saturate(100%) invert(33%) sepia(19%) saturate(1860%)
       hue-rotate(131deg) brightness(95%) contrast(92%);
 }
+
+.transaction-table {
+   @apply md:grid grid-cols-[40%_25%_25%_10%];
+}

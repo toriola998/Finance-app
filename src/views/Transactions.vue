@@ -4,27 +4,28 @@
          <SearchInput placeholder="Search transaction" />
          <DropdownMenu title="Sort by" :options="['Hello', 'Hi']" />
 
-         <div
-            class="hidden text-grey-500 text-sm md:grid grid-cols-[272px_auto_auto_auto] py-4"
-         >
-            <p>Recipient/Sender</p>
-            <p>Category</p>
-            <p>Transaction Date</p>
-            <p>Amount</p>
+         <div v-if="isMobile">
+            <MobileTransaction
+               v-for="(item, index) in data.transactions"
+               :key="index"
+               :item="item"
+               class="md:hidden"
+            />
          </div>
-
-         <MobileTransaction
-            v-for="(item, index) in data.transactions"
-            :key="index"
-            :item="item"
-            class="md:hidden"
-         />
-         <DesktopTransaction
-            v-for="(item, index) in data.transactions"
-            :key="index"
-            :item="item"
-            class="hidden md:grid"
-         />
+         <div v-else>
+            <div class="text-grey-500 text-sm py-4 transaction-table">
+               <p>Recipient/Sender</p>
+               <p>Category</p>
+               <p>Transaction Date</p>
+               <p>Amount</p>
+            </div>
+            <DesktopTransaction
+               v-for="(item, index) in data.transactions"
+               :key="index"
+               :item="item"
+               class="hidden md:grid"
+            />
+         </div>
       </div>
    </PageLayout>
 </template>
@@ -36,6 +37,9 @@ import DropdownMenu from '@/components/shared/DropdownMenu.vue'
 import data from '../../data.json'
 import MobileTransaction from '@/components/transactions/MobileTransaction.vue'
 import DesktopTransaction from '@/components/transactions/DesktopTransaction.vue'
+import { useScreenSize } from '@/composables/useScreenSize'
+
+const { isMobile } = useScreenSize()
 </script>
 
 <style scoped>

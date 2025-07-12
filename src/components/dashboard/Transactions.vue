@@ -4,7 +4,7 @@
 
       <div
          :class="`flex-items justify-between py-4 [&:not(:last-child)]:border-b border-grey-100`"
-         v-for="(item, index) in data.transactions"
+         v-for="(item, index) in data.transactions.splice(0, 5)"
          :key="index"
       >
          <div class="flex-items gap-x-4">

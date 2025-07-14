@@ -58,3 +58,18 @@ button {
 .transaction-table {
    @apply md:grid grid-cols-[40%_25%_25%_10%];
 }
+
+.dropdown-btn {
+   @apply rounded-lg text-grey-900 text-sm border
+   border-grey-900 py-3 px-5 capitalize gap-x-4;
+}
+
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+   display: none;
+}
+
+.no-scrollbar {
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+}

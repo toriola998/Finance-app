@@ -1,26 +1,37 @@
 <template>
-   <Menu>
-      <MenuButton>
-         <slot />
-      </MenuButton>
+   <div class="flex-items gap-x-2 relative">
+      <p class="text-sm text-grey-500 hidden lg:block" v-if="title">
+         {{ title }}
+      </p>
+      <Menu>
+         <MenuButton>
+            <slot />
+         </MenuButton>
 
-      <MenuItems :class="`options-dropdown border border-red ${customClass}`">
-         <p class="title" v-if="title">
-            {{ title }}
-         </p>
-         <div class="flex flex-col min-h-0 max-h-60 overflow-y-auto">
-            <menu-item
-               v-for="(item, index) in options"
-               :key="index"
-               class="item text-justify"
+         <MenuItems :class="`options-dropdown ${customClass}`">
+            <div
+               class="flex flex-col min-h-0 max-h-60 overflow-y-auto no-scrollbar px-5"
             >
-               <button @click="item.action" class="capitalize text-start">
-                  {{ item }}
-               </button>
-            </menu-item>
-         </div>
-      </MenuItems>
-   </Menu>
+               <p
+                  class="text-sm text-grey-500 px-4 py-3 lg:hidden"
+                  v-if="title"
+               >
+                  {{ title }}
+               </p>
+
+               <menu-item
+                  v-for="(item, index) in options"
+                  :key="index"
+                  class="item text-justify"
+               >
+                  <button @click="item.action" class="capitalize text-start">
+                     {{ item }}
+                  </button>
+               </menu-item>
+            </div>
+         </MenuItems>
+      </Menu>
+   </div>
 </template>
 
 <script setup lang="js">
@@ -36,12 +47,10 @@ defineProps({
 @reference "../../styles/main.css";
 
 .options-dropdown {
-   @apply absolute rounded-lg shadow z-50 bg-red h-20;
+   @apply absolute rounded-lg z-50 bg-white right-0 top-14;
+   box-shadow: 0px 4px 24px 0px #00000040;
 }
 .options-dropdown .item {
-   @apply text-black text-[14.5px] hover:bg-gray-50 px-4 py-3;
-}
-.options-dropdown .title {
-   @apply text-black font-semibold mb-4 pt-2 px-4;
+   @apply text-black text-[14.5px] px-4 py-3 border-t border-grey-100;
 }
 </style>

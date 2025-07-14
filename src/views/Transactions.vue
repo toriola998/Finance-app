@@ -1,18 +1,44 @@
 <template>
    <PageLayout title="Transactions">
-      <div class="bg-white px-4 py-5 rounded-xl relative">
-         <SearchInput placeholder="Search transaction" />
-         <DropdownMenu
-            title="Sort by"
-            :options="['Hello', 'Hi']"
-            custom-class="right-0 top-14"
-         >
-            <button
-               class="rounded-xl text-grey-900 text-sm border border-beige-500"
-            >
-               h
-            </button>
-         </DropdownMenu>
+      <div class="bg-white px-4 py-5 lg:p-8 rounded-xl relative">
+         <div class="flex-items justify-between mb-6 gap-x-6">
+            <SearchInput
+               placeholder="Search transaction"
+               searchWidth="max-w-[300px]"
+            />
+
+            <div class="flex-items gap-x-5">
+               <DropdownMenu title="Sort by" :options="sortList">
+                  <button class="">
+                     <span class="hidden md:flex items-center dropdown-btn">
+                        {{ sortList[0] }}
+                        <img src="/assets/icons/icon-caret-down.svg" alt="" />
+                     </span>
+
+                     <img
+                        src="/assets/icons/icon-sort-mobile.svg"
+                        alt
+                        class="md:hidden w-6"
+                     />
+                  </button>
+               </DropdownMenu>
+
+               <DropdownMenu title="Category" :options="categoryList">
+                  <button class="">
+                     <span class="hidden md:flex items-center dropdown-btn">
+                        {{ categoryList[0] }}
+                        <img src="/assets/icons/icon-caret-down.svg" alt="" />
+                     </span>
+
+                     <img
+                        src="/assets/icons/icon-filter-mobile.svg"
+                        alt=""
+                        class="md:hidden w-6"
+                     />
+                  </button>
+               </DropdownMenu>
+            </div>
+         </div>
 
          <div v-if="isMobile">
             <MobileTransaction
@@ -76,6 +102,21 @@ const paginatedTransactions = computed(() => {
    const end = start + itemsPerPage
    return data.transactions.slice(start, end)
 })
+
+const sortList = ['latest', 'highest', 'A to Z', 'Z to A', 'lowest', 'highest']
+const categoryList = [
+   'All Transactions',
+   'Entertainment',
+   'Bills',
+   'Groceries',
+   'Dining Out',
+   'Transportation',
+   'Personal Care',
+   'Education',
+   'Lifestyle',
+   'Shopping',
+   'General',
+]
 </script>
 
 <style scoped>

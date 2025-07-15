@@ -11,24 +11,29 @@
       >
          <Listbox v-model="value" as="div" class="w-full relative">
             <ListboxButton
-               class="p-3 flex-items justify-between capitalize w-full text-[15px]"
+               class="p-3 flex-items justify-between capitalize w-full text-sm text-grey-900"
             >
-               <span>
-                  <span v-if="value">{{ value }}</span>
-                  <span v-else class="text-grey-18 font-normal text-sm"
-                     >Select</span
-                  >
+               <span v-if="value" class="flex-items gap-x-3">
+                  <span :class="['h-4 w-4 rounded-full', value?.color]" />
+                  <span>{{ value?.label }}</span>
                </span>
-               <img src="/icons/dropdown-grey.svg" alt="" />
+
+               <span v-else class="flex-items gap-x-3">
+                  <span
+                     :class="['h-4 w-4 rounded-full block', options[0]?.color]"
+                  />
+                  <span>{{ options[0]?.label }}</span>
+               </span>
+               <img src="/assets/icons/icon-caret-down.svg" alt="" />
             </ListboxButton>
 
             <ListboxOptions
-               class="absolute bg-white shadow w-full rounded mt-1 max-h-80 overflow-auto z-50"
+               class="absolute bg-white shadow w-full rounded mt-1 max-h-40 overflow-auto z-50"
             >
                <ListboxOption
                   v-slot="{ selected }"
                   v-for="option in options"
-                  :key="option[keyProp]"
+                  :key="option.label"
                   :value="option"
                   as="template"
                >
@@ -38,7 +43,10 @@
                         selected ? 'bg-gray-100' : '',
                      ]"
                   >
-                     {{ capFirstLetter(option) }}
+                     <span
+                        :class="['h-4 w-4 rounded-full block', option.color]"
+                     />
+                     <span>{{ option.label }}</span>
                   </li>
                </ListboxOption>
             </ListboxOptions>
@@ -94,17 +102,17 @@ export default {
          type: null,
          default: null,
       },
-      inputClass: {
-         type: String,
-         default: 'border-grey-17 bg-white',
-      },
       label: {
          type: String,
          required: true,
       },
+      inputClass: {
+         type: String,
+         default: 'border-beige-500 bg-white',
+      },
       labelClass: {
          type: String,
-         default: 'text-sm mb-2 text-black-3',
+         default: 'text-xs mb-2 text-grey-500 font-bold',
       },
    },
    emits: ['update:modelValue'],
@@ -137,12 +145,14 @@ export default {
 </script>
 
 <style scoped>
+@reference "../../styles/main.css";
+
 .list-option-style {
-   @apply text-black px-4 py-2 border-b border-gray-100
-    cursor-pointer text-[14.5px] hover:bg-gray-50;
+   @apply text-grey-900 px-4 py-3 border-b border-gray-100
+    cursor-pointer text-sm hover:bg-gray-50 flex items-center gap-x-3;
 }
 
 .has-error {
-   @apply border border-red-2 rounded;
+   @apply border border-red;
 }
 </style>

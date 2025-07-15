@@ -29,7 +29,7 @@
       </div>
 
       <p
-         class="text-red-2 absolute right-0 text-xs pt-[2px]"
+         class="text-red absolute right-0 text-xs pt-[2px]"
          v-show="errorMessage"
       >
          {{ errorMessage }}
@@ -161,17 +161,17 @@ function togglePassword() {
 <style scoped>
 @reference "../../styles/main.css";
 
-input {
-   @apply w-full px-3 py-[10px] border rounded-lg border-beige-500;
+.text-input input {
+   @apply w-full px-5 py-[10px] border rounded-lg border-beige-500;
    outline: none;
    transition:
       border-color 0.3s ease-in-out,
       color 0.3s ease-in-out,
       background-color 0.3s ease-in-out;
+}
 
-   /* &::placeholder {
-      @apply text-grey-18 font-normal text-sm; */
-   /* } */
+.text-input input::placeholder {
+   @apply text-beige-500 font-normal text-sm;
 }
 
 /* input:focus {

@@ -13,6 +13,10 @@ button {
    &.beige {
       @apply bg-beige-100 text-grey-900;
    }
+
+   &.red {
+      @apply bg-red text-white !text-sm;
+   }
 }
 
 .loader {

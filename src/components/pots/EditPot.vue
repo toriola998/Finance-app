@@ -25,7 +25,7 @@
                label="Theme"
             />
          </div>
-         <TheButton text="Add Pot" class="black mt-6 py-4 w-full" />
+         <TheButton text="Save Changes" class="black mt-6 py-4 w-full" />
       </Form>
    </ModalLayout>
 </template>

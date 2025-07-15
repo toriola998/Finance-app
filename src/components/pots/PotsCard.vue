@@ -15,31 +15,44 @@
             </button>
          </DropdownMenu>
       </div>
-
-      <div class="flex-between mt-10 mb-4">
-         <p class="text-grey-500 text-sm">Total Saved</p>
-         <p class="text-grey-900 font-bold text-[32px]">$159.00</p>
-      </div>
-
-      <div class="w-full bg-beige-100 rounded-full h-2 overflow-hidden mb-4">
+      <DataAndProgress
+         text="Total Saved"
+         amount="$159.00"
+         target="$2000"
+         percentage="7.5%"
+      >
          <div
             class="bg-green h-full rounded"
             :style="{ width: (2 / 7.59) * 100 + '%' }"
          />
-      </div>
-
-      <div class="flex-between text-grey-500">
-         <p class="font-bold text-sm">7.95%</p>
-         <p class="text-xs">Target of $2,000</p>
-      </div>
+      </DataAndProgress>
 
       <div class="mt-10 flex gap-x-4">
-         <button class="btn beige w-full">+ Add Money</button>
-         <button class="btn beige w-full">Withdraw</button>
+         <button class="btn beige w-full" @click="showAddMoney = true">
+            + Add Money
+         </button>
+         <button class="btn beige w-full" @click="showWithdraw = true">
+            Withdraw
+         </button>
       </div>
    </article>
+
+   <AddMoney v-if="showAddMoney" />
+   <WithdrawSavings v-if="showWithdraw" />
 </template>
 
 <script setup>
+import { ref, provide } from 'vue'
 import DropdownMenu from '../shared/DropdownMenu.vue'
+import AddMoney from './AddMoney.vue'
+import WithdrawSavings from './WithdrawMoney.vue'
+import DataAndProgress from './DataAndProgress.vue'
+
+const showAddMoney = ref(false)
+const showWithdraw = ref(false)
+
+provide('closeModal', () => {
+   showAddMoney.value = false
+   showWithdraw.value = false
+})
 </script>

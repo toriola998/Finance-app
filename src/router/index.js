@@ -38,6 +38,11 @@ const router = createRouter({
          name: 'Pots',
          component: () => import('../views/Pots.vue'),
       },
+      {
+         path: '/recurring-bills',
+         name: 'RecurringBills',
+         component: () => import('../views/RecurringBills.vue'),
+      },
    ],
 })
 

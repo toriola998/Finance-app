@@ -75,6 +75,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useScreenSize } from '@/composables/useScreenSize'
+import { sortList } from '@/data/shared'
 import SearchInput from '@/components/input-fields/SearchInput.vue'
 import PageLayout from '@/components/layout/PageLayout.vue'
 import DropdownMenu from '@/components/shared/DropdownMenu.vue'
@@ -103,7 +104,6 @@ const paginatedTransactions = computed(() => {
    return data.transactions.slice(start, end)
 })
 
-const sortList = ['latest', 'highest', 'A to Z', 'Z to A', 'lowest', 'highest']
 const categoryList = [
    'All Transactions',
    'Entertainment',

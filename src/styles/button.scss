@@ -9,6 +9,10 @@ button {
    &.black {
       @apply bg-grey-900 text-white;
    }
+
+   &.beige {
+      @apply bg-beige-100 text-grey-900;
+   }
 }
 
 .loader {

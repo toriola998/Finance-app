@@ -3,10 +3,11 @@
       class="px-4 pt-6 pb-20 lg:pl-0 lg:pb-0 lg:pt-0 md:pb-28 bg-beige-100 min-h-screen"
    >
       <div class="lg:hidden">
-         <header>
+         <header class="flex-items justify-between">
             <h1 class="text-grey-900 font-bold text-[32px] mb-8">
                {{ title }}
             </h1>
+            <slot name="header" />
          </header>
 
          <MobileNav :navLinks="navLinks" :isActive="isActive" />
@@ -18,10 +19,11 @@
       <div class="hidden lg:grid grid-cols-[300px_auto] gap-x-10">
          <DesktopNav :navLinks="navLinks" :isActive="isActive" class="" />
          <div class="w-full py-10 max-w-[1500px] mx-auto">
-            <header>
+            <header class="flex-items justify-between">
                <h1 class="text-grey-900 font-bold text-[32px] mb-8">
-                  Overview
+                  {{ title }}
                </h1>
+               <slot name="header" />
             </header>
             <main>
                <slot />

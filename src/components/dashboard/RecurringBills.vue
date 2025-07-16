@@ -1,11 +1,9 @@
 <template>
-   <section class="dashboard-card">
-      <SectionTitle
-         title="Recurring Bills"
-         cta-text="See Details"
-         link="/recurring-bills"
-      />
-
+   <DashboardCardLayout
+      title="Recurring Bills"
+      cta-text="See Details"
+      link="/recurring-bills"
+   >
       <div class="flex flex-col gap-y-3">
          <div
             v-for="(item, index) in bills"
@@ -16,11 +14,11 @@
             <p class="text-grey-900 font-bold">{{ item.price }}</p>
          </div>
       </div>
-   </section>
+   </DashboardCardLayout>
 </template>
 
 <script setup>
-import SectionTitle from './SectionTitle.vue'
+import DashboardCardLayout from '../layout/DashboardCardLayout.vue'
 
 const bills = [
    {

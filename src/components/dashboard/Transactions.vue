@@ -1,11 +1,9 @@
 <template>
-   <section class="dashboard-card">
-      <SectionTitle
-         title="Transactions"
-         cta-text="View All"
-         link="/transactions"
-      />
-
+   <DashboardCardLayout
+      title="Transactions"
+      cta-text="View All"
+      link="/transactions"
+   >
       <div
          :class="`flex-items justify-between py-4 [&:not(:last-child)]:border-b border-grey-100`"
          v-for="(item, index) in data.transactions.splice(0, 5)"
@@ -23,11 +21,11 @@
             </p>
          </div>
       </div>
-   </section>
+   </DashboardCardLayout>
 </template>
 
 <script setup>
-import SectionTitle from './SectionTitle.vue'
+import DashboardCardLayout from '../layout/DashboardCardLayout.vue'
 import data from '../../../data.json'
 import { formatDate } from '@/utils/date'
 </script>

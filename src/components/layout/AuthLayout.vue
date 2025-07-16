@@ -3,13 +3,13 @@ import AuthDesktopImage from '../AuthDesktopImage.vue'
 </script>
 
 <template>
-   <div class="bg-beige-100 min-h-screen">
+   <div class="bg-beige-100 min-h-screen max-w-screen-[1600px]">
       <div class="bg-grey-900 rounded-b-2xl py-6 lg:hidden lg:p-0">
          <img src="/assets/icons/logo-large.svg" alt="" class="block mx-auto" />
       </div>
 
       <main
-         class="flex items-center justify-center mx-6 min-h-screen lg:justify-normal lg:p-6 lg:mx-0"
+         class="flex items-center justify-center mx-6 min-h-screen lg:justify-normal lg:p-6 lg:pb-10 lg:mx-0"
       >
          <AuthDesktopImage />
          <div class="flex justify-center items-center w-full">

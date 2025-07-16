@@ -1,6 +1,6 @@
 <template>
    <section class="dashboard-card">
-      <SectionTitle title="Budgets" cta-text="See All" link="/" />
+      <SectionTitle title="Budgets" cta-text="See All" link="/budgets" />
 
       <div class="grid grid-cols-2 gap-4 lg:flex flex-col">
          <ExpenceCard :list="budgets" />

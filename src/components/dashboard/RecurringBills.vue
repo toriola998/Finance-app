@@ -1,6 +1,10 @@
 <template>
    <section class="dashboard-card">
-      <SectionTitle title="Recurring Bills" cta-text="See Details" link="/" />
+      <SectionTitle
+         title="Recurring Bills"
+         cta-text="See Details"
+         link="/recurring-bills"
+      />
 
       <div class="flex flex-col gap-y-3">
          <div

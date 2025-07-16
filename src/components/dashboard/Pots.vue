@@ -1,6 +1,6 @@
 <template>
    <section class="dashboard-card">
-      <SectionTitle title="Pots" cta-text="See Details" link="/" />
+      <SectionTitle title="Pots" cta-text="See Details" link="/pots" />
 
       <div class="md:grid grid-cols-2 gap-x-5">
          <div class="bg-beige-100 p-5 mb-5 flex gap-x-5 rounded-xl">

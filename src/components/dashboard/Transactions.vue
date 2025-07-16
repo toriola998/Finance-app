@@ -1,6 +1,10 @@
 <template>
    <section class="dashboard-card">
-      <SectionTitle title="Transactions" cta-text="View All" link="/" />
+      <SectionTitle
+         title="Transactions"
+         cta-text="View All"
+         link="/transactions"
+      />
 
       <div
          :class="`flex-items justify-between py-4 [&:not(:last-child)]:border-b border-grey-100`"

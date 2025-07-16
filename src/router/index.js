@@ -4,6 +4,19 @@ import Login from '@/views/auth/Login.vue'
 
 const router = createRouter({
    history: createWebHistory(import.meta.env.BASE_URL),
+   scrollBehavior(to, from, savedPosition) {
+      // Always scroll to the top of the page on new route navigation
+      if (to.hash) {
+         // If there's a hash in the URL (e.g., #section-id), scroll to that element
+         return { selector: to.hash, behavior: 'smooth' }
+      } else if (savedPosition) {
+         // If navigating back/forward, restore the saved scroll position
+         return savedPosition
+      } else {
+         // Otherwise, scroll to the top of the page
+         return { top: 0, behavior: 'smooth' }
+      }
+   },
    routes: [
       {
          path: '/',

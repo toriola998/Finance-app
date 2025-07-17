@@ -69,7 +69,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useScreenSize } from '@/composables/useScreenSize'
-import { sortList } from '@/data/shared'
+import { sortTransactions, sortList } from '@/data/shared'
 import SearchInput from '@/components/input-fields/SearchInput.vue'
 import PageLayout from '@/components/layout/PageLayout.vue'
 import DropdownMenu from '@/components/shared/DropdownMenu.vue'
@@ -112,18 +112,6 @@ const handlePagination = (currentPage) => {
    })
 }
 
-// const paginatedTransactions = computed(() => {
-//    if (!data?.transactions) return []
-//    const start = (pageNumber.value - 1) * itemsPerPage
-//    const end = start + itemsPerPage
-//    return data.transactions.slice(start, end)
-// })
-// const paginatedTransactions = computed(() => {
-//    const start = (pageNumber.value - 1) * itemsPerPage
-//    const end = start + itemsPerPage
-//    return filteredTransactions.value.slice(start, end)
-// })
-
 const filteredTransactions = computed(() => {
    let result = [...data.transactions]
 
@@ -139,23 +127,7 @@ const filteredTransactions = computed(() => {
    }
 
    // Sort
-   switch (selectedSort.value) {
-      case 'latest':
-         result.sort((a, b) => new Date(b.date) - new Date(a.date))
-         break
-      case 'A to Z':
-         result.sort((a, b) => a.name.localeCompare(b.name))
-         break
-      case 'Z to A':
-         result.sort((a, b) => b.name.localeCompare(a.name))
-         break
-      case 'highest':
-         result.sort((a, b) => b.amount - a.amount)
-         break
-      case 'lowest':
-         result.sort((a, b) => a.amount - b.amount)
-         break
-   }
+   result = sortTransactions(result, selectedSort.value)
 
    return result
 })

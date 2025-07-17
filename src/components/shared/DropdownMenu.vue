@@ -24,7 +24,10 @@
                   :key="index"
                   class="item text-justify"
                >
-                  <button @click="item.action" class="capitalize text-start">
+                  <button
+                     @click="$emit('select', item)"
+                     class="capitalize text-start"
+                  >
                      {{ item }}
                   </button>
                </menu-item>

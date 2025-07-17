@@ -1,9 +1,9 @@
 <template>
-   <div class="bg-white px-5 py-6 rounded-2xl">
+   <div class="bg-white px-5 py-6 rounded-2xl max-h-fit">
       <p class="font-bold text-grey-900">Spending Summary</p>
 
       <div
-         class="flex-items justify-between border-b border-beige-100 py-4"
+         class="flex-items justify-between [&:not(:last-child)]:border-b border-beige-100 py-4"
          v-for="(item, index) in budgets"
          :key="index"
       >

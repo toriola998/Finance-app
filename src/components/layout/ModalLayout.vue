@@ -1,7 +1,7 @@
 <template>
    <div class="modal-overlay flex-center px-4">
       <div
-         :class="`relative bg-white rounded w-max px-5 py-7 sm:p-8 modal-inner ${customClass}`"
+         :class="`relative bg-white rounded px-5 py-7 w-full sm:p-8 modal-inner ${customClass}`"
       >
          <div class="flex-between">
             <p class="text-grey-900 font-bold text-xl md:text-[32px]">

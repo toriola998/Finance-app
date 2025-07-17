@@ -6,7 +6,7 @@
       <div class="flex flex-col xl:grid grid-cols-[428px_auto] gap-6">
          <BudgetSummary />
 
-         <div>
+         <div class="flex flex-col gap-y-6">
             <BudgetCard />
          </div>
       </div>

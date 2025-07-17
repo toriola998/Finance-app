@@ -20,7 +20,7 @@
             class="h-full rounded"
             :style="{
                backgroundColor: item.theme,
-               width: (3 / 7.59) * 100 + '%',
+               width: calculateProgress(item) + '%',
             }"
          />
       </div>
@@ -34,7 +34,9 @@
 
             <div>
                <p class="text-xs text-grey-500 mb-[6px]">Spent</p>
-               <p class="text-grey-900 font-bold text-sm">$15.00</p>
+               <p class="text-grey-900 font-bold text-sm">
+                  {{ formatToDollar(getTotalAmountSpent(item.category)) }}
+               </p>
             </div>
          </div>
 
@@ -43,7 +45,14 @@
 
             <div>
                <p class="text-xs text-grey-500 mb-[6px]">Remaining</p>
-               <p class="text-grey-900 font-bold text-sm">$15.00</p>
+               <p class="text-grey-900 font-bold text-sm">
+                  {{
+                     formatToDollar(
+                        Math.abs(item.maximum) -
+                           Math.abs(getTotalAmountSpent(item.category)),
+                     )
+                  }}
+               </p>
             </div>
          </div>
       </div>
@@ -53,6 +62,7 @@
 </template>
 
 <script setup>
+import { formatToDollar } from '@/utils/shared-utils'
 import data from '../../../data.json'
 import LatestSpending from './LatestSpending.vue'
 
@@ -60,9 +70,23 @@ function filterByCategory(category) {
    return data.transactions.filter((item) => item.category === category)
 }
 
-// defineProps({
-//    category: String,
-//    maximum: Number,
-//    theme: String,
-// })
+function getTotalAmountSpent(arg) {
+   const getTransactionByCategory = filterByCategory(arg)
+
+   return getTransactionByCategory.reduce((sum, txn) => sum + txn.amount, 0)
+}
+
+function calculateProgress(item) {
+   const spent = getTotalAmountSpent(item.category)
+   const max = item.maximum
+   console.log(spent, max, 'spent, max')
+
+   if (max <= 0) return 0 // Avoid divide by zero
+
+   const percentage = Math.abs(spent / max) * 100
+   console.log(percentage, 'percentage', Math.min(Math.max(percentage, 0), 100))
+
+   // Clamp between 0% and 100%
+   return Math.min(Math.max(percentage, 0), 100)
+}
 </script>

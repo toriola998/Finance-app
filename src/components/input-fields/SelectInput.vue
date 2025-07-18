@@ -11,22 +11,14 @@
       >
          <Listbox v-model="value" as="div" class="w-full relative">
             <ListboxButton
-               class="p-3 flex-items justify-between capitalize w-full text-sm text-grey-900"
+               class="p-3 flex-items justify-between capitalize w-full text-sm text-grey-900 gap-x-3"
             >
-               <span v-if="value" class="flex-items gap-x-3">
+               <span class="flex-items gap-x-3">
                   <span
                      :class="['h-4 w-4 rounded-full', value?.color]"
                      v-if="value?.color"
                   />
                   <span>{{ value?.label }}</span>
-               </span>
-
-               <span v-else class="flex-items gap-x-3">
-                  <span
-                     v-if="options[0]?.color"
-                     :class="['h-4 w-4 rounded-full block', options[0]?.color]"
-                  />
-                  <span>{{ options[0]?.label }}</span>
                </span>
                <img src="/assets/icons/icon-caret-down.svg" alt="" />
             </ListboxButton>
@@ -123,7 +115,7 @@ export default {
    emits: ['update:modelValue'],
    setup(props, { emit }) {
       const { value, errorMessage } = useField(props.name, props.rules, {
-         initialValue: props.modelValue,
+         initialValue: props.modelValue || props.options[0],
       })
       // Sync v-model binding with vee-validate model changes
       watch(value, (newValue) => {
@@ -136,9 +128,10 @@ export default {
          () => props.modelValue,
          (newModel) => {
             if (newModel !== value.value) {
-               value.value = newModel
+               value.value = newModel || props.options[0]
             }
          },
+         { immediate: true }, // ensure it runs on mount
       )
       return {
          value,

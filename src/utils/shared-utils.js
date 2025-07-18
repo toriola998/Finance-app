@@ -8,3 +8,14 @@ export function formatToDollar(amount) {
       currency: 'USD',
    }).format(amount)
 }
+
+import data from '../../data.json'
+export function filterByCategory(category) {
+   return data.transactions.filter((item) => item.category === category)
+}
+
+export function getTotalAmountSpent(arg) {
+   const getTransactionByCategory = filterByCategory(arg)
+
+   return getTransactionByCategory.reduce((sum, txn) => sum + txn.amount, 0)
+}

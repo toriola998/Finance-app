@@ -10,6 +10,8 @@
             <BudgetCard />
          </div>
       </div>
+
+      <AddNewBudget />
    </PageLayout>
 </template>
 
@@ -17,4 +19,5 @@
 import BudgetCard from '@/components/budget/BudgetCard.vue'
 import BudgetSummary from '@/components/budget/BudgetSummary.vue'
 import PageLayout from '@/components/layout/PageLayout.vue'
+import AddNewBudget from '@/components/budget/AddNewBudget.vue'
 </script>

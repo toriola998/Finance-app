@@ -26,9 +26,14 @@ const addNewPotSchema = yup.object().shape({
    //  .required('Theme is required')
 })
 
+const addNewBudgetSchema = yup.object().shape({
+   maximumSpend: yup.string().required("Can't be empty").transform(sanitize),
+})
+
 const schemas = {
    loginSchema,
    addNewPotSchema,
+   addNewBudgetSchema,
 }
 
 export default schemas

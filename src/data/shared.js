@@ -49,3 +49,36 @@ export const budgets = [
       value: '$100.00',
    },
 ]
+
+export const categoryList = [
+   {
+      label: 'Entertainment',
+   },
+   {
+      label: 'Bills',
+   },
+   {
+      label: 'Groceries',
+   },
+   {
+      label: 'Dining Out',
+   },
+   {
+      label: 'Transportation',
+   },
+   {
+      label: 'Personal Care',
+   },
+   {
+      label: 'Education',
+   },
+   {
+      label: 'Lifestyle',
+   },
+   {
+      label: 'Shopping',
+   },
+   {
+      label: 'General',
+   },
+]

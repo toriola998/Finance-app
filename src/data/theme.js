@@ -21,7 +21,7 @@ export const theme = [
    },
    {
       color: 'bg-purple',
-      label: '',
+      label: 'Pink',
    },
    {
       color: 'bg-turquoise',

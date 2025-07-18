@@ -14,12 +14,16 @@
                class="p-3 flex-items justify-between capitalize w-full text-sm text-grey-900"
             >
                <span v-if="value" class="flex-items gap-x-3">
-                  <span :class="['h-4 w-4 rounded-full', value?.color]" />
+                  <span
+                     :class="['h-4 w-4 rounded-full', value?.color]"
+                     v-if="value?.color"
+                  />
                   <span>{{ value?.label }}</span>
                </span>
 
                <span v-else class="flex-items gap-x-3">
                   <span
+                     v-if="options[0]?.color"
                      :class="['h-4 w-4 rounded-full block', options[0]?.color]"
                   />
                   <span>{{ options[0]?.label }}</span>
@@ -44,6 +48,7 @@
                      ]"
                   >
                      <span
+                        v-if="option.color"
                         :class="['h-4 w-4 rounded-full block', option.color]"
                      />
                      <span>{{ option.label }}</span>

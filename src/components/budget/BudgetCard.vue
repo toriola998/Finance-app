@@ -32,9 +32,11 @@
 
 <script setup>
 import { getTotalAmountSpent, filterByCategory } from '@/utils/shared-utils'
-import data from '../../../data.json'
+import { useDataStore } from '@/stores/data'
 import LatestSpending from './LatestSpending.vue'
 import ExpenseTrack from './ExpenseTrack.vue'
+
+const { financeData: data } = useDataStore()
 
 function calculateProgress(item) {
    const spent = getTotalAmountSpent(item.category)

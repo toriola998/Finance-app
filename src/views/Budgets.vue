@@ -13,18 +13,27 @@
          </div>
       </div>
 
-      <AddNewBudget v-if="showAddNewBudget" />
+      <AddNewBudget
+         v-if="showAddNewBudget"
+         @addBudgetSuccess="handleAddBudgetSuccess"
+      />
    </PageLayout>
 </template>
 
 <script setup>
 import { ref, provide } from 'vue'
+import { toast } from 'vue3-toastify'
 import BudgetCard from '@/components/budget/BudgetCard.vue'
 import BudgetSummary from '@/components/budget/BudgetSummary.vue'
 import PageLayout from '@/components/layout/PageLayout.vue'
 import AddNewBudget from '@/components/budget/AddNewBudget.vue'
 
 const showAddNewBudget = ref(false)
+
+function handleAddBudgetSuccess() {
+   showAddNewBudget.value = false
+   toast.success('Budget Successully Added!')
+}
 
 provide('closeModal', () => {
    showAddNewBudget.value = false

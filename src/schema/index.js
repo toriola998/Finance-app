@@ -16,18 +16,10 @@ const loginSchema = yup.object().shape({
 const addNewPotSchema = yup.object().shape({
    potName: yup.string().required("Can't be empty").transform(sanitize),
    target: yup.string().required("Can't be empty").transform(sanitize),
-   //theme: yup.object().required("Can't be empty").transform(sanitize),
-   // theme: yup
-   //  .object({
-   //    label: yup.string().required('Theme is required'),
-   //    color: yup.string(),
-   //  })
-   //  .nullable()
-   //  .required('Theme is required')
 })
 
 const addNewBudgetSchema = yup.object().shape({
-   maximumSpend: yup.string().required("Can't be empty").transform(sanitize),
+   maximum: yup.string().required("Can't be empty").transform(sanitize),
 })
 
 const schemas = {

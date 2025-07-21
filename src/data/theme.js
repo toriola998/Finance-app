@@ -1,62 +1,62 @@
 export const theme = [
    {
-      color: 'bg-green',
+      color: '#277c78',
       label: 'Green',
    },
    {
-      color: 'bg-yellow',
+      color: '#f2cdac',
       label: 'Yellow',
    },
    {
-      color: 'bg-cyan',
+      color: '#82c9d7',
       label: 'Cyan',
    },
    {
-      color: 'bg-navy',
+      color: '#626070',
       label: 'Navy',
    },
    {
-      color: 'bg-red',
+      color: '#c94736',
       label: 'Red',
    },
    {
-      color: 'bg-purple',
+      color: '#826cb0',
       label: 'Pink',
    },
    {
-      color: 'bg-turquoise',
+      color: '#597c7c',
       label: 'Turquoise',
    },
    {
-      color: 'bg-brown',
+      color: '#93674f',
       label: 'Brown',
    },
    {
-      color: 'bg-magenta',
+      color: '#934f6f',
       label: 'Magenta',
    },
    {
-      color: 'bg-blue',
+      color: '#3f82b2',
       label: 'Blue',
    },
    {
-      color: 'bg-navy-grey',
+      color: '#97a0ac',
       label: 'Navy Grey',
    },
    {
-      color: 'bg-army-green',
+      color: '#7f9161',
       label: 'Green',
    },
    {
-      color: 'bg-purple-1',
+      color: '#af81ba',
       label: 'Pink',
    },
    {
-      color: 'bg-gold',
+      color: '#cab361',
       label: 'Gold',
    },
    {
-      color: 'bg-orange',
+      color: '#be6c49',
       label: 'Orange',
    },
 ]

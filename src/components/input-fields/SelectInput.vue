@@ -15,7 +15,8 @@
             >
                <span class="flex-items gap-x-3">
                   <span
-                     :class="['h-4 w-4 rounded-full', value?.color]"
+                     :class="['h-4 w-4 rounded-full']"
+                     :style="{ backgroundColor: value?.color }"
                      v-if="value?.color"
                   />
                   <span>{{ value?.label }}</span>
@@ -41,7 +42,8 @@
                   >
                      <span
                         v-if="option.color"
-                        :class="['h-4 w-4 rounded-full block', option.color]"
+                        :class="['h-4 w-4 rounded-full block']"
+                        :style="{ backgroundColor: option?.color }"
                      />
                      <span>{{ option.label }}</span>
                   </li>

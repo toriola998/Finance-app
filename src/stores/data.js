@@ -2,18 +2,13 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import data from '../../data.json'
 
-// export const useCounterStore = defineStore('counter', () => {
-//    const count = ref(0)
-//    const doubleCount = computed(() => count.value * 2)
-//    function increment() {
-//       count.value++
-//    }
-
-//    return { count, doubleCount, increment }
-// })
-
 export const useDataStore = defineStore('financeData', () => {
    const financeData = ref({ ...data })
+   console.log(financeData.value)
 
-   return { financeData }
+   function setBudget(arg) {
+      financeData.value.budgets.unshift(arg)
+   }
+
+   return { financeData, setBudget }
 })

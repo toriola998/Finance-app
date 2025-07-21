@@ -4,12 +4,22 @@
       v-for="(item, index) in data.budgets"
       :key="index"
    >
-      <div class="flex-items gap-x-4">
-         <span
-            class="block rounded-full h-5 w-5"
-            :style="{ backgroundColor: item.theme }"
-         />
-         <p class="font-bold text-xl text-grey-900">{{ item.category }}</p>
+      <div class="flex-between">
+         <div class="flex-items gap-x-4">
+            <span
+               class="block rounded-full h-5 w-5"
+               :style="{ backgroundColor: item.theme }"
+            />
+            <p class="font-bold text-xl text-grey-900">{{ item.category }}</p>
+         </div>
+         <DropdownMenu
+            :options="['Edit Pot', 'Delete Pot']"
+            custom-class="min-w-max"
+         >
+            <button>
+               <img src="/assets/icons/icon-ellipsis.svg" alt="" />
+            </button>
+         </DropdownMenu>
       </div>
       <p class="text-grey-500 text-sm py-5">Maximum of ${{ item.maximum }}</p>
 
@@ -35,6 +45,7 @@ import { getTotalAmountSpent, filterByCategory } from '@/utils/shared-utils'
 import { useDataStore } from '@/stores/data'
 import LatestSpending from './LatestSpending.vue'
 import ExpenseTrack from './ExpenseTrack.vue'
+import DropdownMenu from '../shared/DropdownMenu.vue'
 
 const { financeData: data } = useDataStore()
 

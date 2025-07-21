@@ -15,7 +15,7 @@
             />
             <TextInput
                is-amount
-               name="maximumSpend"
+               name="maximum"
                label="Maximum spend"
                placeholder="e.g. 2000"
             />
@@ -27,7 +27,7 @@
                label="Theme"
             />
          </div>
-         <TheButton text="Add Pot" class="black mt-6 py-4 w-full" />
+         <TheButton text="Add New Budget" class="black mt-6 py-4 w-full" />
       </Form>
    </ModalLayout>
 </template>
@@ -36,13 +36,23 @@
 import { Form } from 'vee-validate'
 import { theme } from '@/data/theme'
 import { categoryList } from '@/data/shared'
+import { useDataStore } from '@/stores/data'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import SelectInput from '../input-fields/SelectInput.vue'
 import TheButton from '../shared/TheButton.vue'
 import schemas from '@/schema'
 
-async function onSubmit(values) {
-   console.log(values)
+const dataStore = useDataStore()
+const emit = defineEmits(['addBudgetSuccess'])
+
+function onSubmit(values) {
+   let payload = {
+      category: values.category.label,
+      maximum: 750.0,
+      theme: values.theme.color,
+   }
+   dataStore.setBudget(payload)
+   emit('addBudgetSuccess')
 }
 </script>

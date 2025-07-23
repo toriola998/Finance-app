@@ -10,5 +10,12 @@ export const useDataStore = defineStore('financeData', () => {
       financeData.value.budgets.unshift(arg)
    }
 
-   return { financeData, setBudget }
+   function removeBudget(budget) {
+      const idx = financeData.value.budgets.indexOf(budget)
+      if (idx !== -1) {
+         financeData.value.budgets.splice(idx, 1)
+      }
+   }
+
+   return { financeData, setBudget, removeBudget }
 })

@@ -5,11 +5,11 @@ import data from '../../data.json'
 export const useDataStore = defineStore('financeData', () => {
    const financeData = ref({ ...data })
 
-   function setBudget(arg) {
+   function addNewBudget(arg) {
       financeData.value.budgets.unshift(arg)
    }
 
-   function removeBudget(budget) {
+   function deleteBudget(budget) {
       const idx = financeData.value.budgets.indexOf(budget)
       if (idx !== -1) {
          financeData.value.budgets.splice(idx, 1)
@@ -48,8 +48,8 @@ export const useDataStore = defineStore('financeData', () => {
 
    return {
       financeData,
-      setBudget,
-      removeBudget,
+      addNewBudget,
+      deleteBudget,
       editBudget,
       addNewPot,
       editPot,

@@ -9,31 +9,14 @@
          <BudgetSummary />
 
          <div class="flex flex-col gap-y-6">
-            <BudgetCard
-               v-for="(item, index) in data.budgets"
-               :key="index"
-               :item="item"
-               @action-selected="handleActionSelected"
-               @item-selected="handleItemSelected"
-            />
+            <BudgetCard v-for="(item, index) in data.budgets" :key="index" :item="item"
+               @action-selected="handleActionSelected" @item-selected="handleItemSelected" />
          </div>
       </div>
-      <AddNewBudget
-         v-if="showAddNewBudget"
-         @addBudgetSuccess="handleAddBudgetSuccess"
-      />
-      <DeleteConfirmation
-         v-if="showDeleteConfirmation"
-         title="Budget"
-         :name="budget.category"
-         @cancel="showDeleteConfirmation = false"
-         @proceed="deleteBudget"
-      />
-      <EditBudget
-         v-if="showEditBudget"
-         :budget="budget"
-         @editBudgetSuccess="showEditBudget = false"
-      />
+      <AddNewBudget v-if="showAddNewBudget" @addBudgetSuccess="handleAddBudgetSuccess" />
+      <DeleteConfirmation v-if="showDeleteConfirmation" title="Budget" :name="budget.category"
+         @cancel="showDeleteConfirmation = false" @proceed="deleteBudget" />
+      <EditBudget v-if="showEditBudget" :budget="budget" @editBudgetSuccess="showEditBudget = false" />
    </PageLayout>
 </template>
 
@@ -75,7 +58,7 @@ function handleActionSelected(action) {
    }
 }
 function deleteBudget() {
-   dataStore.removeBudget(budget.value)
+   dataStore.deleteBudget(budget.value)
 
    toast.success(`${budget.value.category} successfully deleted`)
    budget.value = {}

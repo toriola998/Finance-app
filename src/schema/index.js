@@ -20,6 +20,8 @@ const addNewPotSchema = yup.object().shape({
 
 const addNewBudgetSchema = yup.object().shape({
    maximum: yup.string().required("Can't be empty").transform(sanitize),
+   theme: yup.string().required('Select a theme'),
+   category: yup.string().required('Select Category'),
 })
 
 const schemas = {

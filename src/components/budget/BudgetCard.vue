@@ -46,6 +46,7 @@
       @cancel="showDeleteConfirmation = false"
       @proceed="deleteBudget"
    />
+   <EditBudget v-if="showEditBudget" :budget="budget" />
 </template>
 
 <script setup>
@@ -57,6 +58,7 @@ import LatestSpending from './LatestSpending.vue'
 import ExpenseTrack from './ExpenseTrack.vue'
 import DropdownMenu from '../shared/DropdownMenu.vue'
 import DeleteConfirmation from '../shared/DeleteConfirmation.vue'
+import EditBudget from './EditBudget.vue'
 
 const { financeData: data } = useDataStore()
 
@@ -74,15 +76,18 @@ function calculateProgress(item) {
 
 const budget = ref({})
 const showDeleteConfirmation = ref(false)
+const showEditBudget = ref(false)
 
 function getItem(item) {
    budget.value = item
-   // console.log(budget.value)
+   console.log(budget.value)
 }
 
 function getAction(arg) {
    if (arg === 'Delete Budget') {
       showDeleteConfirmation.value = true
+   } else {
+      showEditBudget.value = true
    }
 }
 
@@ -96,5 +101,6 @@ function deleteBudget() {
 
 provide('closeModal', () => {
    showDeleteConfirmation.value = false
+   showEditBudget.value = false
 })
 </script>

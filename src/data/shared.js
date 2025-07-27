@@ -51,34 +51,56 @@ export const budgets = [
 ]
 
 export const categoryList = [
-   {
-      label: 'Entertainment',
-   },
-   {
-      label: 'Bills',
-   },
-   {
-      label: 'Groceries',
-   },
-   {
-      label: 'Dining Out',
-   },
-   {
-      label: 'Transportation',
-   },
-   {
-      label: 'Personal Care',
-   },
-   {
-      label: 'Education',
-   },
-   {
-      label: 'Lifestyle',
-   },
-   {
-      label: 'Shopping',
-   },
-   {
-      label: 'General',
-   },
+   'Entertainment',
+   'Bills',
+   'Groceries',
+   'Dining Out',
+   'Transportation',
+   'Personal Care',
+   'Education',
+   'Lifestyle',
+   'Shopping',
+   'General',
 ]
+// export const categoryList = [
+//    {
+//       category: 'Entertainment',
+//       label: 'Entertainment',
+//    },
+//    {
+//       category: 'Bills',
+//       label: 'Bills',
+//    },
+//    {
+//       category: 'Groceries',
+//       label: 'Groceries',
+//    },
+//    {
+//       category: 'Dining Out',
+//       label: 'Dining Out',
+//    },
+//    {
+//       category: 'Transportation',
+//       label: 'Transportation',
+//    },
+//    {
+//       category: 'Personal Care',
+//       label: 'Personal Care',
+//    },
+//    {
+//       category: 'Education',
+//       label: 'Education',
+//    },
+//    {
+//       category: 'Lifestyle',
+//       label: 'Lifestyle',
+//    },
+//    {
+//       category: 'Shopping',
+//       label: 'Shopping',
+//    },
+//    {
+//       category: 'General',
+//       label: 'General',
+//    },
+// ]

@@ -1,4 +1,4 @@
-export const theme = [
+export const themeColors = [
    {
       color: '#277c78',
       label: 'Green',
@@ -60,3 +60,7 @@ export const theme = [
       label: 'Orange',
    },
 ]
+
+export const theme = themeColors.map(
+   (item) => `${item.color} - '${item.label}'`,
+)

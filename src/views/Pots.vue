@@ -25,6 +25,11 @@
          @proceed="deletePot"
       />
    </PageLayout>
+   <EditPot
+      v-if="showEditPot"
+      :pot="pot"
+      @editPotSuccess="showEditPot = false"
+   />
    <AddMoney v-if="showAddMoney" />
    <WithdrawMoney v-if="showWithdraw" />
 </template>
@@ -37,6 +42,7 @@ import PageLayout from '@/components/layout/PageLayout.vue'
 import AddNewPot from '@/components/pots/AddNewPot.vue'
 import PotsCard from '@/components/pots/PotsCard.vue'
 import AddMoney from '@/components/pots/AddMoney.vue'
+import EditPot from '@/components/pots/EditPot.vue'
 import WithdrawMoney from '@/components/pots/WithdrawMoney.vue'
 import DeleteConfirmation from '@/components/shared/DeleteConfirmation.vue'
 

@@ -4,7 +4,11 @@
       sub-text="If your saving targets change, feel free to update your pots."
       customClass="max-w-[560px]"
    >
-      <Form @submit="onSubmit" :validation-schema="schemas.potSchema">
+      <Form
+         @submit="onSubmit"
+         :validation-schema="schemas.potSchema"
+         :initial-values="defaultValues"
+      >
          <div class="flex flex-col gap-y-4">
             <TextInput
                name="potName"
@@ -30,16 +34,47 @@
    </ModalLayout>
 </template>
 
-<script setup>
+<script setup lang="js">
+import { computed } from 'vue'
 import { Form } from 'vee-validate'
 import { theme } from '@/data/theme'
+import { useDataStore } from '@/stores/data'
+import { getThemeLabelFormat } from '@/utils/shared-utils'
+import { toast } from 'vue3-toastify'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import SelectInput from '../input-fields/SelectInput.vue'
 import TheButton from '../shared/TheButton.vue'
 import schemas from '@/schema'
 
+const dataStore = useDataStore()
+const emit = defineEmits(['editPotSuccess'])
+
+const props = defineProps({
+   pot: Object,
+})
+
+const defaultValues = computed(() => {
+   if (!props.pot) return {}
+   console.log(props.pot, 'pot')
+   return {
+      potName: props.pot.name,
+      theme: getThemeLabelFormat(props.pot.theme),
+      target: props.pot.target,
+   }
+})
+
 function onSubmit(values) {
    console.log(values)
+
+   const updatedPot = {
+      potName: values.potName,
+      target: parseFloat(values.target),
+      theme: values.theme.split(' - ')[0].trim(),
+   }
+
+   dataStore.editPot(props.pot, updatedPot)
+   emit('editPotSuccess')
+   toast.success(`${values.potName} pot successfully updated`)
 }
 </script>

@@ -30,7 +30,7 @@
             </ListboxButton>
 
             <ListboxOptions
-               class="absolute bg-white shadow w-full rounded mt-1 max-h-80 overflow-auto z-50"
+               class="absolute bg-white shadow w-full rounded mt-1 max-h-40 overflow-auto z-50"
             >
                <ListboxOption
                   v-slot="{ selected }"

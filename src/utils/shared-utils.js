@@ -19,3 +19,12 @@ export function getTotalAmountSpent(arg) {
 
    return getTransactionByCategory.reduce((sum, txn) => sum + txn.amount, 0)
 }
+
+import { themeColors } from '@/data/theme'
+export const getThemeLabelFormat = (color) => {
+   const match = themeColors.find((t) => {
+      return t.color.toLowerCase() === color.toLowerCase()
+   })
+   return match ? `${match.color} - '${match.label}'` : color
+}
+//export default getThemeLabelFormat;

@@ -50,7 +50,7 @@ defineProps({
 @reference "../../styles/main.css";
 
 .options-dropdown {
-   @apply absolute rounded-lg z-50 bg-white right-0 top-14;
+   @apply absolute rounded-lg z-50 bg-white right-0 top-10;
    box-shadow: 0px 4px 24px 0px #00000040;
 }
 .options-dropdown .item {

@@ -13,24 +13,29 @@
             <ListboxButton
                class="p-3 flex-items justify-between capitalize w-full text-sm text-grey-900 gap-x-3"
             >
-               <span class="flex-items gap-x-3">
-                  <span
-                     :class="['h-4 w-4 rounded-full']"
-                     :style="{ backgroundColor: value?.color }"
-                     v-if="value?.color"
-                  />
-                  <span>{{ value?.label }}</span>
+               <span>
+                  <span v-if="value">
+                     <span class="flex-items gap-x-3">
+                        <span
+                           class="h-4 w-4 rounded-full"
+                           :style="{ backgroundColor: parsedColor }"
+                           v-if="parsedColor"
+                        />
+                        <span>{{ parsedLabel }}</span>
+                     </span>
+                  </span>
+                  <span v-else class="text-gray-500">Select</span>
                </span>
                <img src="/assets/icons/icon-caret-down.svg" alt="" />
             </ListboxButton>
 
             <ListboxOptions
-               class="absolute bg-white shadow w-full rounded mt-1 max-h-40 overflow-auto z-50"
+               class="absolute bg-white shadow w-full rounded mt-1 max-h-80 overflow-auto z-50"
             >
                <ListboxOption
                   v-slot="{ selected }"
                   v-for="option in options"
-                  :key="option.label"
+                  :key="option[keyProp]"
                   :value="option"
                   as="template"
                >
@@ -41,15 +46,15 @@
                      ]"
                   >
                      <span
-                        v-if="option.color"
-                        :class="['h-4 w-4 rounded-full block']"
-                        :style="{ backgroundColor: option?.color }"
+                        v-if="getColor(option)"
+                        class="h-4 w-4 rounded-full block"
+                        :style="{ backgroundColor: getColor(option) }"
                      />
-                     <span>{{ option.label }}</span>
+                     <span>{{ getLabel(option) }}</span>
                   </li>
                </ListboxOption>
             </ListboxOptions>
-            <span class="text-red-2 absolute right-0 text-xs pt-[2px]">{{
+            <span class="text-red absolute right-0 text-xs pt-[2px]">{{
                errorMessage
             }}</span>
          </Listbox>
@@ -59,7 +64,7 @@
 
 <script lang="js">
 import { capFirstLetter } from '@/utils/shared-utils'
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
 import {
    Listbox,
    ListboxLabel,
@@ -117,7 +122,7 @@ export default {
    emits: ['update:modelValue'],
    setup(props, { emit }) {
       const { value, errorMessage } = useField(props.name, props.rules, {
-         initialValue: props.modelValue || props.options[0],
+         initialValue: props.modelValue,
       })
       // Sync v-model binding with vee-validate model changes
       watch(value, (newValue) => {
@@ -130,15 +135,49 @@ export default {
          () => props.modelValue,
          (newModel) => {
             if (newModel !== value.value) {
-               value.value = newModel || props.options[0]
+               value.value = newModel
             }
          },
-         { immediate: true }, // ensure it runs on mount
       )
+      function getColor(option) {
+         if (typeof option === 'string' && option.startsWith('#')) {
+            return option.split(' - ')[0].trim()
+         }
+         return option || null
+      }
+
+      function getLabel(option) {
+         if (typeof option === 'string' && option.startsWith('#')) {
+            const parts = option.split(' - ')
+            return parts[1]?.replace(/['"]+/g, '').trim() || ''
+         }
+         return option || capFirstLetter(option)
+      }
+
+      const parsedColor = computed(() => {
+         if (typeof value.value === 'string' && value.value.startsWith('#')) {
+            return value.value.split(' - ')[0].trim()
+         }
+         return null
+      })
+
+      const parsedLabel = computed(() => {
+         if (typeof value.value === 'string' && value.value.startsWith('#')) {
+            const parts = value.value.split(' - ')
+            // console.log(parts[1].trim(), 'alleged label,', parts)
+            return parts[1]?.replace(/['"]+/g, '').trim() || ''
+         }
+         return value || ''
+      })
+
       return {
          value,
          errorMessage,
          capFirstLetter,
+         getColor,
+         getLabel,
+         parsedColor,
+         parsedLabel,
       }
    },
 }

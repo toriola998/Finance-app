@@ -4,9 +4,13 @@
       sub-text="As your budgets change, feel free to update your spending limits."
       customClass="max-w-[560px]"
    >
-      <Form @submit="onSubmit" :validation-schema="schemas.addNewBudgetSchema" :initial-values="defaultValues">
+      <Form
+         @submit="onSubmit"
+         :validation-schema="schemas.addNewBudgetSchema"
+         :initial-values="defaultValues"
+      >
          <div class="flex flex-col gap-y-4">
-            <SelectInput2
+            <SelectInput
                :options="categoryList"
                name="category"
                key-prop="category"
@@ -19,7 +23,7 @@
                label="Maximum spend"
                placeholder="e.g. 2000"
             />
-            <SelectInput2
+            <SelectInput
                :options="theme"
                name="theme"
                key-prop="theme"
@@ -33,19 +37,31 @@
 </template>
 
 <script setup lang="js">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { Form } from 'vee-validate'
 import { themeColors, theme } from '@/data/theme'
 import { categoryList } from '@/data/shared'
-import SelectInput2 from '../input-fields/SelectInput2.vue'
-//import SelectInput2 from '../input-fields/SelectInput2.vue'
+import { useDataStore } from '@/stores/data'
+import { toast } from 'vue3-toastify'
+import SelectInput from '../input-fields/SelectInput.vue'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import TheButton from '../shared/TheButton.vue'
 import schemas from '@/schema'
 
+const dataStore = useDataStore()
+const emit = defineEmits(['editBudgetSuccess'])
+
 function onSubmit(values) {
    console.log(values)
+   let payload = {
+      category: values.category,
+      maximum: 750.0,
+      theme: values.theme.split(' - ')[0].trim(),
+   }
+   dataStore.editBudget(payload)
+   emit('editBudgetSuccess')
+   toast.success(`${values.category} budget successfully updated`)
 }
 
 const props = defineProps({
@@ -53,22 +69,21 @@ const props = defineProps({
 })
 
 const getThemeLabelFormat = (color) => {
-  const match = themeColors.find((t) => {
-    console.log(t.color.toLowerCase(), color.toLowerCase(), 'reddd')
-    return t.color.toLowerCase() === color.toLowerCase()
-  })
-  console.log(match, 'match')
-  return match ? `${match.color} - '${match.label}'` : color
+   const match = themeColors.find((t) => {
+      console.log(t.color.toLowerCase(), color.toLowerCase(), 'reddd')
+      return t.color.toLowerCase() === color.toLowerCase()
+   })
+   console.log(match, 'match')
+   return match ? `${match.color} - '${match.label}'` : color
 }
 
 const defaultValues = computed(() => {
-  if (!props.budget) return {}
+   if (!props.budget) return {}
 
-  return {
-    maximum: props.budget.maximum,
-    theme: getThemeLabelFormat(props.budget.theme),
-    category: props.budget.category,
-  }
+   return {
+      maximum: props.budget.maximum,
+      theme: getThemeLabelFormat(props.budget.theme),
+      category: props.budget.category,
+   }
 })
-
 </script>

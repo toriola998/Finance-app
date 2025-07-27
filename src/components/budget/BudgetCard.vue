@@ -46,7 +46,11 @@
       @cancel="showDeleteConfirmation = false"
       @proceed="deleteBudget"
    />
-   <EditBudget v-if="showEditBudget" :budget="budget" />
+   <EditBudget
+      v-if="showEditBudget"
+      :budget="budget"
+      @editBudgetSuccess="showEditBudget = false"
+   />
 </template>
 
 <script setup>

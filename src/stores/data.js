@@ -17,5 +17,17 @@ export const useDataStore = defineStore('financeData', () => {
       }
    }
 
-   return { financeData, setBudget, removeBudget }
+   function editBudget(updatedBudget) {
+      const idx = financeData.value.budgets.findIndex(
+         (b) => b.category === updatedBudget.category,
+      )
+      if (idx !== -1) {
+         financeData.value.budgets[idx] = {
+            ...financeData.value.budgets[idx],
+            ...updatedBudget,
+         }
+      }
+   }
+
+   return { financeData, setBudget, removeBudget, editBudget }
 })

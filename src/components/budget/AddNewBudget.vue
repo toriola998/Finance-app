@@ -48,9 +48,9 @@ const emit = defineEmits(['addBudgetSuccess'])
 
 function onSubmit(values) {
    let payload = {
-      category: values.category.label,
+      category: values.category,
       maximum: 750.0,
-      theme: values.theme.color,
+      theme: values.theme.split(' - ')[0].trim(),
    }
    dataStore.setBudget(payload)
    emit('addBudgetSuccess')

@@ -59,12 +59,12 @@ const props = defineProps({
 })
 
 function calculateProgress(item) {
-   const spent = item.target
-   const max = item.total
+   const total = item.total
+   const target = item.target
 
-   if (max <= 0) return 0 // Avoid divide by zero
+   if (target <= 0) return 0 // Avoid divide by zero
 
-   const percentage = Math.abs(spent / max) * 100
+   const percentage = Math.abs(total / target) * 100
    return Math.min(Math.max(percentage, 0), 100)
 }
 

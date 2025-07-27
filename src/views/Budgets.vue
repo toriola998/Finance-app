@@ -74,7 +74,6 @@ function handleActionSelected(action) {
       showEditBudget.value = true
    }
 }
-
 function deleteBudget() {
    dataStore.removeBudget(budget.value)
 
@@ -82,7 +81,6 @@ function deleteBudget() {
    budget.value = {}
    showDeleteConfirmation.value = false
 }
-
 provide('closeModal', () => {
    showDeleteConfirmation.value = false
    showEditBudget.value = false

@@ -52,12 +52,10 @@ const showAddMoney = ref(false)
 function handleItemSelected(item) {
    pot.value = item
 }
-
 function handleAddPotSuccess() {
    showAddNewPot.value = false
    toast.success('Pot Successully Added!')
 }
-
 function handleActionSelected(action) {
    if (action === 'Delete Pot') {
       showDeleteConfirmation.value = true
@@ -65,7 +63,6 @@ function handleActionSelected(action) {
       showEditPot.value = true
    }
 }
-
 function deletePot() {
    dataStore.deletePot(pot.value)
 
@@ -73,7 +70,6 @@ function deletePot() {
    pot.value = {}
    showDeleteConfirmation.value = false
 }
-
 provide('closeModal', () => {
    showAddNewPot.value = false
    showAddMoney.value = false

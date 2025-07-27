@@ -17,14 +17,24 @@ export const useDataStore = defineStore('financeData', () => {
       }
    }
 
-   function editBudget(updatedBudget) {
-      const idx = financeData.value.budgets.findIndex(
-         (b) => b.category === updatedBudget.category,
-      )
+   // function editBudget(updatedBudget) {
+   //    const idx = financeData.value.budgets.findIndex(
+   //       (b) => b.category === updatedBudget.category,
+   //    )
+   //    if (idx !== -1) {
+   //       financeData.value.budgets[idx] = {
+   //          ...financeData.value.budgets[idx],
+   //          ...updatedBudget,
+   //       }
+   //    }
+   // }
+
+   function editBudget(originalBudget, updatedFields) {
+      const idx = financeData.value.budgets.indexOf(originalBudget)
       if (idx !== -1) {
          financeData.value.budgets[idx] = {
-            ...financeData.value.budgets[idx],
-            ...updatedBudget,
+            ...originalBudget,
+            ...updatedFields,
          }
       }
    }

@@ -52,28 +52,14 @@ import schemas from '@/schema'
 const dataStore = useDataStore()
 const emit = defineEmits(['editBudgetSuccess'])
 
-function onSubmit(values) {
-   console.log(values)
-   let payload = {
-      category: values.category,
-      maximum: 750.0,
-      theme: values.theme.split(' - ')[0].trim(),
-   }
-   dataStore.editBudget(payload)
-   emit('editBudgetSuccess')
-   toast.success(`${values.category} budget successfully updated`)
-}
-
 const props = defineProps({
    budget: Object,
 })
 
 const getThemeLabelFormat = (color) => {
    const match = themeColors.find((t) => {
-      console.log(t.color.toLowerCase(), color.toLowerCase(), 'reddd')
       return t.color.toLowerCase() === color.toLowerCase()
    })
-   console.log(match, 'match')
    return match ? `${match.color} - '${match.label}'` : color
 }
 
@@ -86,4 +72,14 @@ const defaultValues = computed(() => {
       category: props.budget.category,
    }
 })
+function onSubmit(values) {
+   const updatedBudget = {
+      category: values.category,
+      maximum: parseFloat(values.maximum),
+      theme: values.theme.split(' - ')[0].trim(),
+   }
+   dataStore.editBudget(props.budget, updatedBudget)
+   emit('editBudgetSuccess')
+   toast.success(`${values.category} budget successfully updated`)
+}
 </script>

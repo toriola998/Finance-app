@@ -4,6 +4,7 @@ import data from '../../data.json'
 
 export const useDataStore = defineStore('financeData', () => {
    const financeData = ref({ ...data })
+
    function setBudget(arg) {
       financeData.value.budgets.unshift(arg)
    }
@@ -24,5 +25,34 @@ export const useDataStore = defineStore('financeData', () => {
       }
    }
 
-   return { financeData, setBudget, removeBudget, editBudget }
+   function addNewPot(arg) {
+      financeData.value.pots.unshift(arg)
+   }
+
+   function deletePot(budget) {
+      const idx = financeData.value.pots.indexOf(budget)
+      if (idx !== -1) {
+         financeData.value.pots.splice(idx, 1)
+      }
+   }
+
+   function editPot(originalPot, updatedFields) {
+      const idx = financeData.value.pots.indexOf(originalPot)
+      if (idx !== -1) {
+         financeData.value.pots[idx] = {
+            ...originalPot,
+            ...updatedFields,
+         }
+      }
+   }
+
+   return {
+      financeData,
+      setBudget,
+      removeBudget,
+      editBudget,
+      addNewPot,
+      editPot,
+      deletePot,
+   }
 })

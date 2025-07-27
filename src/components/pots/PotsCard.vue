@@ -2,13 +2,17 @@
    <article class="bg-white rounded-lg px-5 py-6">
       <div class="flex-between">
          <div class="flex-items gap-x-4">
-            <span class="block h-5 w-5 rounded-full bg-green" />
-            <p class="font-bold text-grey-900 text-xl">Savings</p>
+            <span
+               class="block h-5 w-5 rounded-full"
+               :style="{ backgroundColor: pot.theme }"
+            />
+            <p class="font-bold text-grey-900 text-xl">{{ pot.name }}</p>
          </div>
 
          <DropdownMenu
             :options="['Edit Pot', 'Delete Pot']"
             custom-class="min-w-max"
+            @select="handleDropdownSelect"
          >
             <button>
                <img src="/assets/icons/icon-ellipsis.svg" alt="" />
@@ -17,13 +21,16 @@
       </div>
       <DataAndProgress
          text="Total Saved"
-         amount="$159.00"
-         target="$2000"
-         percentage="7.5%"
+         :amount="formatToDollar(pot.total)"
+         :target="formatToDollar(pot.target)"
+         :percentage="`${(pot.total / pot.target).toFixed(4) * 100}%`"
       >
          <div
-            class="bg-green h-full rounded"
-            :style="{ width: (2 / 7.59) * 100 + '%' }"
+            class="h-full rounded"
+            :style="{
+               backgroundColor: pot.theme,
+               width: calculateProgress(pot) + '%',
+            }"
          />
       </DataAndProgress>
 
@@ -36,20 +43,41 @@
          </button>
       </div>
    </article>
-
-   <AddMoney v-if="showAddMoney" />
-   <WithdrawSavings v-if="showWithdraw" />
 </template>
 
 <script setup>
 import { ref, provide } from 'vue'
+import { formatToDollar } from '@/utils/shared-utils'
 import DropdownMenu from '../shared/DropdownMenu.vue'
-import AddMoney from './AddMoney.vue'
-import WithdrawSavings from './WithdrawMoney.vue'
 import DataAndProgress from './DataAndProgress.vue'
 
 const showAddMoney = ref(false)
 const showWithdraw = ref(false)
+
+const props = defineProps({
+   pot: Object,
+})
+
+function calculateProgress(item) {
+   const spent = item.target
+   const max = item.total
+
+   if (max <= 0) return 0 // Avoid divide by zero
+
+   const percentage = Math.abs(spent / max) * 100
+   return Math.min(Math.max(percentage, 0), 100)
+}
+
+// Define emits for parent communication
+const emit = defineEmits(['action-selected', 'item-selected'])
+
+function handleDropdownSelect(selectedAction) {
+   // First, emit the selected item to parent
+   emit('item-selected', props.pot)
+
+   // Then emit the action to parent
+   emit('action-selected', selectedAction)
+}
 
 provide('closeModal', () => {
    showAddMoney.value = false

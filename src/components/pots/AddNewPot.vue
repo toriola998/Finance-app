@@ -34,13 +34,26 @@
 <script setup>
 import { Form } from 'vee-validate'
 import { theme } from '@/data/theme'
+import { useDataStore } from '@/stores/data'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import SelectInput from '../input-fields/SelectInput.vue'
 import TheButton from '../shared/TheButton.vue'
 import schemas from '@/schema'
 
+const dataStore = useDataStore()
+const emit = defineEmits(['addPotSuccess'])
+
 async function onSubmit(values) {
    console.log(values)
+
+   let payload = {
+      name: values.potName,
+      target: values.target,
+      total: 0,
+      theme: values.theme.split(' - ')[0].trim(),
+   }
+   dataStore.addNewPot(payload)
+   emit('addPotSuccess')
 }
 </script>

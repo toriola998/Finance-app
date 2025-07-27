@@ -1,9 +1,5 @@
 <template>
-   <div
-      class="bg-white rounded-lg px-5 py-6 md:p-8"
-      v-for="(item, index) in data.budgets"
-      :key="index"
-   >
+   <div class="bg-white rounded-lg px-5 py-6 md:p-8">
       <div class="flex-between">
          <div class="flex-items gap-x-4">
             <span
@@ -15,9 +11,9 @@
          <DropdownMenu
             :options="['Edit Budget', 'Delete Budget']"
             custom-class="min-w-max"
-            @select="getAction"
+            @select="handleDropdownSelect"
          >
-            <button @click="getItem(item)">
+            <button>
                <img src="/assets/icons/icon-ellipsis.svg" alt="" />
             </button>
          </DropdownMenu>
@@ -39,34 +35,17 @@
       <ExpenseTrack :item="item" />
       <LatestSpending :latest-spending="filterByCategory(item.category)" />
    </div>
-   <DeleteConfirmation
-      v-if="showDeleteConfirmation"
-      title="Budget"
-      :name="budget.category"
-      @cancel="showDeleteConfirmation = false"
-      @proceed="deleteBudget"
-   />
-   <EditBudget
-      v-if="showEditBudget"
-      :budget="budget"
-      @editBudgetSuccess="showEditBudget = false"
-   />
 </template>
 
 <script setup>
-import { ref, provide } from 'vue'
 import { getTotalAmountSpent, filterByCategory } from '@/utils/shared-utils'
-import { useDataStore } from '@/stores/data'
-import { toast } from 'vue3-toastify'
 import LatestSpending from './LatestSpending.vue'
 import ExpenseTrack from './ExpenseTrack.vue'
 import DropdownMenu from '../shared/DropdownMenu.vue'
-import DeleteConfirmation from '../shared/DeleteConfirmation.vue'
-import EditBudget from './EditBudget.vue'
 
-const { financeData: data } = useDataStore()
-
-const dataStore = useDataStore()
+const props = defineProps({
+   item: Object,
+})
 
 function calculateProgress(item) {
    const spent = getTotalAmountSpent(item.category)
@@ -78,33 +57,14 @@ function calculateProgress(item) {
    return Math.min(Math.max(percentage, 0), 100)
 }
 
-const budget = ref({})
-const showDeleteConfirmation = ref(false)
-const showEditBudget = ref(false)
+// Define emits for parent communication
+const emit = defineEmits(['action-selected', 'item-selected'])
 
-function getItem(item) {
-   budget.value = item
-   console.log(budget.value)
+function handleDropdownSelect(selectedAction) {
+   // First, emit the selected item to parent
+   emit('item-selected', props.item)
+
+   // Then emit the action to parent
+   emit('action-selected', selectedAction)
 }
-
-function getAction(arg) {
-   if (arg === 'Delete Budget') {
-      showDeleteConfirmation.value = true
-   } else {
-      showEditBudget.value = true
-   }
-}
-
-function deleteBudget() {
-   dataStore.removeBudget(budget.value)
-
-   toast.success(`${budget.value.category} successfully deleted`)
-   budget.value = {}
-   showDeleteConfirmation.value = false
-}
-
-provide('closeModal', () => {
-   showDeleteConfirmation.value = false
-   showEditBudget.value = false
-})
 </script>

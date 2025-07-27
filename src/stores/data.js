@@ -4,8 +4,6 @@ import data from '../../data.json'
 
 export const useDataStore = defineStore('financeData', () => {
    const financeData = ref({ ...data })
-   console.log(financeData.value)
-
    function setBudget(arg) {
       financeData.value.budgets.unshift(arg)
    }
@@ -16,19 +14,6 @@ export const useDataStore = defineStore('financeData', () => {
          financeData.value.budgets.splice(idx, 1)
       }
    }
-
-   // function editBudget(updatedBudget) {
-   //    const idx = financeData.value.budgets.findIndex(
-   //       (b) => b.category === updatedBudget.category,
-   //    )
-   //    if (idx !== -1) {
-   //       financeData.value.budgets[idx] = {
-   //          ...financeData.value.budgets[idx],
-   //          ...updatedBudget,
-   //       }
-   //    }
-   // }
-
    function editBudget(originalBudget, updatedFields) {
       const idx = financeData.value.budgets.indexOf(originalBudget)
       if (idx !== -1) {

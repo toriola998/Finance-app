@@ -5,7 +5,7 @@
          help keep you on track as you save for special purchases."
       customClass="max-w-[560px]"
    >
-      <Form @submit="onSubmit" :validation-schema="schemas.addNewPotSchema">
+      <Form @submit="onSubmit" :validation-schema="schemas.potSchema">
          <div class="flex flex-col gap-y-4">
             <TextInput
                name="potName"

@@ -4,7 +4,7 @@
       sub-text="If your saving targets change, feel free to update your pots."
       customClass="max-w-[560px]"
    >
-      <Form @submit="onSubmit" :validation-schema="schemas.addNewPotSchema">
+      <Form @submit="onSubmit" :validation-schema="schemas.potSchema">
          <div class="flex flex-col gap-y-4">
             <TextInput
                name="potName"
@@ -39,7 +39,7 @@ import SelectInput from '../input-fields/SelectInput.vue'
 import TheButton from '../shared/TheButton.vue'
 import schemas from '@/schema'
 
-async function onSubmit(values) {
+function onSubmit(values) {
    console.log(values)
 }
 </script>

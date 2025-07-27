@@ -6,7 +6,7 @@
    >
       <Form
          @submit="onSubmit"
-         :validation-schema="schemas.addNewBudgetSchema"
+         :validation-schema="schemas.budgetSchema"
          :initial-values="defaultValues"
       >
          <div class="flex flex-col gap-y-4">

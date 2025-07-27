@@ -39,8 +39,8 @@
 <script setup lang="js">
 import { computed } from 'vue'
 import { Form } from 'vee-validate'
-import { themeColors, theme } from '@/data/theme'
-import { categoryList } from '@/data/shared'
+import { theme } from '@/data/theme'
+import { categoryList, getThemeLabelFormat } from '@/data/shared'
 import { useDataStore } from '@/stores/data'
 import { toast } from 'vue3-toastify'
 import SelectInput from '../input-fields/SelectInput.vue'
@@ -55,13 +55,6 @@ const emit = defineEmits(['editBudgetSuccess'])
 const props = defineProps({
    budget: Object,
 })
-
-const getThemeLabelFormat = (color) => {
-   const match = themeColors.find((t) => {
-      return t.color.toLowerCase() === color.toLowerCase()
-   })
-   return match ? `${match.color} - '${match.label}'` : color
-}
 
 const defaultValues = computed(() => {
    if (!props.budget) return {}

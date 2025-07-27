@@ -56,7 +56,7 @@ const props = defineProps({
 
 const defaultValues = computed(() => {
    if (!props.pot) return {}
-   console.log(props.pot, 'pot')
+
    return {
       potName: props.pot.name,
       theme: getThemeLabelFormat(props.pot.theme),
@@ -65,8 +65,6 @@ const defaultValues = computed(() => {
 })
 
 function onSubmit(values) {
-   console.log(values)
-
    const updatedPot = {
       potName: values.potName,
       target: parseFloat(values.target),

@@ -27,4 +27,10 @@ export const getThemeLabelFormat = (color) => {
    })
    return match ? `${match.color} - '${match.label}'` : color
 }
-//export default getThemeLabelFormat;
+
+export function calculateProgress(total, target) {
+   if (target <= 0) return 0 // Avoid divide by zero
+
+   const percentage = Math.abs(total / target) * 100
+   return Math.min(Math.max(percentage, 0), 100)
+}

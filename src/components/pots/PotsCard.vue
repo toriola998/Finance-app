@@ -46,7 +46,6 @@
 </template>
 
 <script setup>
-import { ref, provide } from 'vue'
 import { formatToDollar } from '@/utils/shared-utils'
 import DropdownMenu from '../shared/DropdownMenu.vue'
 import DataAndProgress from './DataAndProgress.vue'
@@ -75,9 +74,4 @@ function handleDropdownSelect(selectedAction) {
    // Then emit the action to parent
    emit('action-selected', selectedAction)
 }
-
-provide('closeModal', () => {
-   showAddMoney.value = false
-   showWithdraw.value = false
-})
 </script>

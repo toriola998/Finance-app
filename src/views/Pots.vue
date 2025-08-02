@@ -32,8 +32,8 @@
       :pot="pot"
       @editPotSuccess="showEditPot = false"
    />
-   <AddMoney v-if="showAddMoney" :name="pot.name" />
-   <WithdrawMoney v-if="showWithdraw" />
+   <AddMoney v-if="showAddMoney" :pot="pot" />
+   <WithdrawMoney v-if="showWithdraw" :name="pot.name" />
 </template>
 
 <script setup>
@@ -93,5 +93,6 @@ provide('closeModal', () => {
    showAddMoney.value = false
    showDeleteConfirmation.value = false
    showEditPot.value = false
+   showWithdraw.value = false
 })
 </script>

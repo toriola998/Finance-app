@@ -35,10 +35,10 @@
       </DataAndProgress>
 
       <div class="mt-10 flex gap-x-4">
-         <button class="btn beige w-full" @click="showAddMoney = true">
+         <button class="btn beige w-full" @click="$emit('addMoney', pot)">
             + Add Money
          </button>
-         <button class="btn beige w-full" @click="showWithdraw = true">
+         <button class="btn beige w-full" @click="$emit('withdrawMoney', pot)">
             Withdraw
          </button>
       </div>
@@ -50,9 +50,6 @@ import { ref, provide } from 'vue'
 import { formatToDollar } from '@/utils/shared-utils'
 import DropdownMenu from '../shared/DropdownMenu.vue'
 import DataAndProgress from './DataAndProgress.vue'
-
-const showAddMoney = ref(false)
-const showWithdraw = ref(false)
 
 const props = defineProps({
    pot: Object,

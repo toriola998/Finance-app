@@ -19,7 +19,7 @@ const router = createRouter({
    },
    routes: [
       {
-         path: '/',
+         path: '/login',
          name: 'login',
          component: Login,
       },
@@ -32,9 +32,9 @@ const router = createRouter({
          component: () => import('../views/auth/SignUp.vue'),
       },
       {
-         path: '/dashboard',
-         name: 'Dashboard',
-         component: () => import('../views/Dashboard.vue'),
+         path: '/',
+         name: 'Overview',
+         component: () => import('../views/Overview.vue'),
       },
       {
          path: '/transactions',

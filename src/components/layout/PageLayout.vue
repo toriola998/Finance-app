@@ -48,7 +48,7 @@ defineProps({
 
 const navLinks = [
    {
-      link: '/dashboard',
+      link: '/',
       icon: 'icon-nav-overview.svg',
       text: 'Overview',
    },

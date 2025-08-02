@@ -13,6 +13,8 @@
             :pot="item"
             @action-selected="handleActionSelected"
             @item-selected="handleItemSelected"
+            @addMoney="addMoney"
+            @withdrawMoney="withdrawMoney"
          />
       </div>
 
@@ -30,7 +32,7 @@
       :pot="pot"
       @editPotSuccess="showEditPot = false"
    />
-   <AddMoney v-if="showAddMoney" />
+   <AddMoney v-if="showAddMoney" :name="pot.name" />
    <WithdrawMoney v-if="showWithdraw" />
 </template>
 
@@ -50,10 +52,11 @@ const { financeData: data } = useDataStore()
 const dataStore = useDataStore()
 
 const showAddNewPot = ref(false)
+const showEditPot = ref(false)
 const pot = ref({})
 const showDeleteConfirmation = ref(false)
-const showEditPot = ref(false)
 const showAddMoney = ref(false)
+const showWithdraw = ref(false)
 
 function handleItemSelected(item) {
    pot.value = item
@@ -75,6 +78,15 @@ function deletePot() {
    toast.success(`${pot.value.name} successfully deleted`)
    pot.value = {}
    showDeleteConfirmation.value = false
+}
+function addMoney(arg) {
+   showAddMoney.value = true
+   console.log(arg)
+   pot.value = arg
+}
+function withdrawMoney(arg) {
+   showWithdraw.value = true
+   console.log(arg)
 }
 provide('closeModal', () => {
    showAddNewPot.value = false

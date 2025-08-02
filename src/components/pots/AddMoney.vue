@@ -1,6 +1,6 @@
 <template>
    <ModalLayout
-      :title="`Add to ${name}`"
+      :title="`Add to '${name}'`"
       sub-text="Add money to your pot to keep it separate from your main balance.
       As soon as you add this money, it will be deducted from your current balance."
       customClass="max-w-[560px]"

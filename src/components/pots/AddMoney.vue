@@ -12,7 +12,7 @@
          :percentage="`${((newPotTotal / pot.target) * 100).toFixed(2)}%`"
       >
          <div
-            class="relative w-full h-full rounded bg-gray-200 overflow-hidden"
+            class="relative w-full h-full rounded bg-beige-100 overflow-hidden"
          >
             <div
                class="h-full absolute top-0 left-0 transition-all duration-300"

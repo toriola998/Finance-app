@@ -37,7 +37,11 @@
       :pot="pot"
       @addMoneyToPotSuccess="showAddMoney = false"
    />
-   <WithdrawMoney v-if="showWithdraw" :name="pot.name" />
+   <WithdrawMoney
+      v-if="showWithdraw"
+      :pot="pot"
+      @potWithdrawSuccess="showWithdraw = false"
+   />
 </template>
 
 <script setup>
@@ -91,6 +95,7 @@ function addMoney(arg) {
 function withdrawMoney(arg) {
    showWithdraw.value = true
    console.log(arg)
+   pot.value = arg
 }
 provide('closeModal', () => {
    showAddNewPot.value = false

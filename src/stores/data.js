@@ -42,7 +42,7 @@ export const useDataStore = defineStore('financeData', () => {
          }
       }
    }
-   function addMoneyToPot(originalPot, updatedFields) {
+   function updatePotBalance(originalPot, updatedFields) {
       const idx = financeData.value.pots.indexOf(originalPot)
       if (idx !== -1) {
          // Ensure reactivity by using Vue.set-style assignment
@@ -61,6 +61,6 @@ export const useDataStore = defineStore('financeData', () => {
       addNewPot,
       editPot,
       deletePot,
-      addMoneyToPot,
+      updatePotBalance,
    }
 })

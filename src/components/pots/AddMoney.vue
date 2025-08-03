@@ -10,6 +10,7 @@
          :amount="formatToDollar(newPotTotal)"
          :target="formatToDollar(pot?.target)"
          :percentage="`${((newPotTotal / pot.target) * 100).toFixed(2)}%`"
+         percentageColor="text-green"
       >
          <div
             class="relative w-full h-full rounded bg-beige-100 overflow-hidden"
@@ -85,10 +86,8 @@ const newPotTotal = computed(() => {
 })
 
 function addMoneyToPot(pot) {
-   dataStore.addMoneyToPot(pot, { total: newPotTotal.value })
+   dataStore.updatePotBalance(pot, { total: newPotTotal.value })
    emit('addMoneyToPotSuccess')
-   console.log(pot, 'new pot', { total: newPotTotal.value })
-
    toast.success(`Money successfully added to '${pot?.name}' pot`)
 }
 </script>

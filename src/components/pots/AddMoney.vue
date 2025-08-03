@@ -5,7 +5,6 @@
       As soon as you add this money, it will be deducted from your current balance."
       customClass="max-w-[560px]"
    >
-      <!-- :percentage="`${(newPotTotal / pot.target).toFixed(2) * 100}%`" -->
       <DataAndProgress
          text="New Amount"
          :amount="formatToDollar(newPotTotal)"
@@ -13,12 +12,23 @@
          :percentage="`${((newPotTotal / pot.target) * 100).toFixed(2)}%`"
       >
          <div
-            class="bg-green h-full rounded"
-            :style="{
-               backgroundColor: pot.theme,
-               width: calculateProgress(newPotTotal, pot?.target) + '%',
-            }"
-         />
+            class="relative w-full h-full rounded bg-gray-200 overflow-hidden"
+         >
+            <div
+               class="h-full absolute top-0 left-0 transition-all duration-300"
+               :style="{
+                  borderRadius: '50px',
+                  width: totalProgressPercentage + '%',
+                  background: `linear-gradient(to right,
+                     #000 0%,
+                     #000 calc(${oldMoneyPortion}% - 1px),
+                     #fff calc(${oldMoneyPortion}% - 3px),
+                     #fff calc(${oldMoneyPortion}% + 3px),
+                     ${pot.theme} calc(${oldMoneyPortion}% + 1px),
+                     ${pot.theme} 100%)`,
+               }"
+            ></div>
+         </div>
       </DataAndProgress>
 
       <TextInput
@@ -28,7 +38,6 @@
          placeholder="e.g. 20"
          v-model="amountValue"
       />
-      <p class="mt-2">Live value: {{ amountValue }}</p>
 
       <button class="btn black w-full mt-5" @click="addMoneyToPot(pot)">
          Confirm Addition
@@ -37,7 +46,7 @@
 </template>
 
 <script setup lang="js">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { formatToDollar, calculateProgress } from '@/utils/shared-utils'
 import { useForm, useField } from 'vee-validate'
 import { useDataStore } from '@/stores/data'
@@ -50,19 +59,29 @@ const props = defineProps({
    pot: Object,
 })
 
-// 1. Setup form (even if no validation rules)
+// Setup form
 useForm()
 
-const total = ref(props.pot?.total)
 const { value: amountValue } = useField('amount')
-
 const dataStore = useDataStore()
 const emit = defineEmits(['addMoneyToPotSuccess'])
 
+// Make current total reactive to prop changes
+const currentTotal = computed(() => props.pot?.total || 0)
+
+// Single progress bar calculations
+const totalProgressPercentage = computed(() => {
+   return calculateProgress(newPotTotal.value, props.pot?.target)
+})
+
+const oldMoneyPortion = computed(() => {
+   if (newPotTotal.value === 0) return 0
+   return (currentTotal.value / newPotTotal.value) * 100
+})
+
 const newPotTotal = computed(() => {
-   return amountValue.value
-      ? Number(amountValue.value) + Number(total.value)
-      : Number(total.value)
+   const amount = amountValue.value ? Number(amountValue.value) : 0
+   return amount + currentTotal.value
 })
 
 function addMoneyToPot(pot) {
@@ -70,6 +89,6 @@ function addMoneyToPot(pot) {
    emit('addMoneyToPotSuccess')
    console.log(pot, 'new pot', { total: newPotTotal.value })
 
-   toast.success(`Money successfully addded to '${pot?.name}' pot`)
+   toast.success(`Money successfully added to '${pot?.name}' pot`)
 }
 </script>

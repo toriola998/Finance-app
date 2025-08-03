@@ -30,7 +30,9 @@
       />
       <p class="mt-2">Live value: {{ amountValue }}</p>
 
-      <button class="btn black w-full mt-5">Confirm Addition</button>
+      <button class="btn black w-full mt-5" @click="addMoneyToPot(pot)">
+         Confirm Addition
+      </button>
    </ModalLayout>
 </template>
 
@@ -38,6 +40,8 @@
 import { computed, ref } from 'vue'
 import { formatToDollar, calculateProgress } from '@/utils/shared-utils'
 import { useForm, useField } from 'vee-validate'
+import { useDataStore } from '@/stores/data'
+import { toast } from 'vue3-toastify'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import DataAndProgress from './DataAndProgress.vue'
@@ -52,9 +56,20 @@ useForm()
 const total = ref(props.pot?.total)
 const { value: amountValue } = useField('amount')
 
+const dataStore = useDataStore()
+const emit = defineEmits(['addMoneyToPotSuccess'])
+
 const newPotTotal = computed(() => {
    return amountValue.value
       ? Number(amountValue.value) + Number(total.value)
       : Number(total.value)
 })
+
+function addMoneyToPot(pot) {
+   dataStore.addMoneyToPot(pot, { total: newPotTotal.value })
+   emit('addMoneyToPotSuccess')
+   console.log(pot, 'new pot', { total: newPotTotal.value })
+
+   toast.success(`Money successfully addded to '${pot?.name}' pot`)
+}
 </script>

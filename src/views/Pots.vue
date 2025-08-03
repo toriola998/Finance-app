@@ -32,7 +32,11 @@
       :pot="pot"
       @editPotSuccess="showEditPot = false"
    />
-   <AddMoney v-if="showAddMoney" :pot="pot" />
+   <AddMoney
+      v-if="showAddMoney"
+      :pot="pot"
+      @addMoneyToPotSuccess="showAddMoney = false"
+   />
    <WithdrawMoney v-if="showWithdraw" :name="pot.name" />
 </template>
 

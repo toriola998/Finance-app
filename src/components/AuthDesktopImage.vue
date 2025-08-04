@@ -1,5 +1,5 @@
 <template>
-   <div class="hidden lg:block relative w-[60%]">
+   <div class="hidden lg:block relative w-[70%] xl:w-[60%]">
       <img
          src="/assets/icons/logo-large.svg"
          alt=""
@@ -8,10 +8,10 @@
       <img
          src="/assets/icons/illustration-authentication.svg"
          alt=""
-         class="rounded-xl w-full min-h-screen"
+         class="rounded-xl w-full"
       />
 
-      <div class="-mt-48 text-white bottom-10 px-10">
+      <div class="-mt-56 xl:-mt-48 text-white bottom-10 px-10">
          <p class="font-bold mb-6 text-3xl">
             Keep track of your money and save for your future
          </p>

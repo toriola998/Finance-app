@@ -6,7 +6,7 @@
       </div>
 
       <p class="text-xs text-grey-500 mt-2">
-         {{ getDayWithSuffix(item.date) }}
+         Monthly {{ getDayWithSuffix(item.date) }}
       </p>
       <p :class="['text-sm font-bold', item.amount < 0 ? '' : 'text-green']">
          {{ item.amount < 0 ? item.amount : `+${item.amount}` }}

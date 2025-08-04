@@ -1,5 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import AuthDesktopImage from '../AuthDesktopImage.vue'
+
+defineProps({
+   title: String,
+})
 </script>
 
 <template>
@@ -9,13 +13,13 @@ import AuthDesktopImage from '../AuthDesktopImage.vue'
       </div>
 
       <main
-         class="flex items-center justify-center mx-6 min-h-screen lg:justify-normal lg:p-6 lg:pb-10 lg:mx-0"
+         class="flex items-center justify-center mx-6 min-h-screen lg:justify-normal lg:p-6 lg:pb-20 lg:mx-0 lg:gap-x-4"
       >
          <AuthDesktopImage />
          <div class="flex justify-center items-center w-full">
             <div class="bg-white p-5 rounded-lg w-full max-w-[560px]">
                <h1 class="font-bold text-3xl md:text-4xl text-grey-900 mb-8">
-                  Login
+                  {{ title }}
                </h1>
 
                <slot />

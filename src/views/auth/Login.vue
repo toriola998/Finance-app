@@ -5,7 +5,7 @@ import TheButton from '@/components/shared/TheButton.vue'
 </script>
 
 <template>
-   <AuthLayout>
+   <AuthLayout title="Login">
       <div class="flex flex-col gap-y-4">
          <TextInput name="email" label="Email" />
          <TextInput name="password" label="Password" />

@@ -5,18 +5,18 @@ import TheButton from '@/components/shared/TheButton.vue'
 </script>
 
 <template>
-   <AuthLayout>
+   <AuthLayout title="Sign Up">
       <div class="flex flex-col gap-y-4">
          <TextInput name="name" label="Name" />
          <TextInput name="email" label="Email" />
          <TextInput name="password" label="Password" type="password" />
       </div>
 
-      <TheButton class="btn black my-8 w-full" text="Login" />
+      <TheButton class="btn black my-8 w-full" text="Sign Up" />
 
       <div class="flex-center text-sm">
          <p class="text-grey-500 font-medium">Already have an account?</p>
-         <router-link to="/" class="text-grey-900 font-bold pl-2 underline"
+         <router-link to="/login" class="text-grey-900 font-bold pl-2 underline"
             >Login</router-link
          >
       </div>

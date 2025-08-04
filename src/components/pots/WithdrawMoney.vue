@@ -33,14 +33,12 @@
          placeholder="e.g. 20"
          v-model="amountValue"
       />
-      <button
+      <TheButton
          class="btn black w-full mt-5"
-         @click="withdrawFromPot(pot)"
-         :disabled="withdrawAmount > currentTotal"
-      >
-         Confirm Withdrawal
-      </button>
-
+         text="Confirm Withdrawal"
+         @action="withdrawFromPot(pot)"
+         :disabled="!amountValue || withdrawAmount > currentTotal"
+      />
       <p
          v-if="withdrawAmount > currentTotal"
          class="bg-red text-white rounded-lg text-center py-3 text-sm mt-2"
@@ -59,19 +57,18 @@ import { toast } from 'vue3-toastify'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import DataAndProgress from './DataAndProgress.vue'
+import TheButton from '../shared/TheButton.vue'
 
 const props = defineProps({
    pot: Object,
 })
 
-// Setup form
 useForm()
 
 const { value: amountValue } = useField('amount')
 const dataStore = useDataStore()
 const emit = defineEmits(['potWithdrawSuccess'])
 
-// Make current total reactive to prop changes
 const currentTotal = computed(() => props.pot?.total || 0)
 
 // Withdrawal amount

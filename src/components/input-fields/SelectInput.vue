@@ -164,7 +164,6 @@ export default {
       const parsedLabel = computed(() => {
          if (typeof value.value === 'string' && value.value.startsWith('#')) {
             const parts = value.value.split(' - ')
-            // console.log(parts[1].trim(), 'alleged label,', parts)
             return parts[1]?.replace(/['"]+/g, '').trim() || ''
          }
          return value || ''

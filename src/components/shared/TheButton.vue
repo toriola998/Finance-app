@@ -1,7 +1,7 @@
 <template>
    <button
       class="text-sm btn tw-rounded black"
-      :class="[{ 'cursor-not-allowed': isLoading, '!bg-grey-2': disabled }]"
+      :class="[{ 'cursor-not-allowed': isLoading, '!bg-[#808080]': disabled }]"
       @click="$emit('action')"
       :type="type"
       :disabled="disabled"

@@ -45,8 +45,6 @@ const dataStore = useDataStore()
 const emit = defineEmits(['addPotSuccess'])
 
 async function onSubmit(values) {
-   console.log(values)
-
    let payload = {
       name: values.potName,
       target: values.target,

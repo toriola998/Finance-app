@@ -64,14 +64,18 @@ function calculateProgress(item) {
    return Math.min(Math.max(percentage, 0), 100)
 }
 
-// Define emits for parent communication
-const emit = defineEmits(['action-selected', 'item-selected'])
+const emit = defineEmits([
+   'action-selected',
+   'item-selected',
+   'addMoney',
+   'withdrawMoney',
+])
 
 function handleDropdownSelect(selectedAction) {
-   // First, emit the selected item to parent
+   // Emit the selected item to parent
    emit('item-selected', props.pot)
 
-   // Then emit the action to parent
+   // Emit the action to parent
    emit('action-selected', selectedAction)
 }
 </script>

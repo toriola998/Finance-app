@@ -89,12 +89,10 @@ function deletePot() {
 }
 function addMoney(arg) {
    showAddMoney.value = true
-   console.log(arg)
    pot.value = arg
 }
 function withdrawMoney(arg) {
    showWithdraw.value = true
-   console.log(arg)
    pot.value = arg
 }
 provide('closeModal', () => {

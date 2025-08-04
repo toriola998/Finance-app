@@ -39,10 +39,12 @@
          placeholder="e.g. 20"
          v-model="amountValue"
       />
-
-      <button class="btn black w-full mt-5" @click="addMoneyToPot(pot)">
-         Confirm Addition
-      </button>
+      <TheButton
+         class="btn black w-full mt-5"
+         text="Confirm Addition"
+         @action="addMoneyToPot(pot)"
+         :disabled="!amountValue"
+      />
    </ModalLayout>
 </template>
 
@@ -55,6 +57,7 @@ import { toast } from 'vue3-toastify'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import DataAndProgress from './DataAndProgress.vue'
+import TheButton from '../shared/TheButton.vue'
 
 const props = defineProps({
    pot: Object,

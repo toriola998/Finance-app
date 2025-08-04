@@ -4,14 +4,15 @@ button {
 }
 
 .btn {
-   @apply rounded-lg h-11 flex justify-center items-center py-4 text-sm font-bold;
+   @apply rounded-lg h-12 flex justify-center items-center py-4 text-sm font-bold;
 
    &.black {
-      @apply bg-grey-900 text-white;
+      @apply bg-grey-900 text-white hover:bg-grey-500;
    }
 
    &.beige {
-      @apply bg-beige-100 text-grey-900;
+      @apply bg-beige-100 text-grey-900
+      hover:bg-white hover:border hover:border-beige-500;
    }
 
    &.red {

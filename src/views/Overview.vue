@@ -10,12 +10,12 @@ import RecurringBills from '@/components/dashboard/RecurringBills.vue'
 <template>
    <PageLayout title="Overview">
       <AccountSummary />
-      <div class="lg:flex gap-x-6">
-         <div class="lg:w-[60%]">
+      <div class="xl:flex gap-x-6">
+         <div class="xl:w-[60%]">
             <Pots />
             <Transactions />
          </div>
-         <div class="lg:w-[40%]">
+         <div class="xl:w-[40%]">
             <Budget />
             <RecurringBills />
          </div>

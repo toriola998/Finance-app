@@ -1,6 +1,6 @@
 <template>
    <DashboardCardLayout title="Budgets" cta-text="See All" link="/budgets">
-      <div class="sm:flex justify-end lg:flex-col xl:flex-row">
+      <div class="sm:flex justify-end">
          <BudgetsChart :totalMax="totalMax" :totalSpent="totalSpent" />
 
          <div class="grid grid-cols-2 gap-4 sm:flex flex-col">

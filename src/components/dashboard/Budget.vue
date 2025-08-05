@@ -1,7 +1,10 @@
 <template>
    <DashboardCardLayout title="Budgets" cta-text="See All" link="/budgets">
-      <div class="grid grid-cols-2 gap-4 lg:flex flex-col">
-         <ExpenceCard :list="budgets" />
+      <div class="sm:flex justify-end lg:flex-col xl:flex-row">
+         <BudgetsChart />
+         <div class="grid grid-cols-2 gap-4 sm:flex flex-col">
+            <ExpenceCard :list="budgets" />
+         </div>
       </div>
    </DashboardCardLayout>
 </template>
@@ -10,4 +13,5 @@
 import { budgets } from '@/data/shared'
 import ExpenceCard from './ExpenceCard.vue'
 import DashboardCardLayout from '../layout/DashboardCardLayout.vue'
+import BudgetsChart from '../shared/BudgetsChart.vue'
 </script>

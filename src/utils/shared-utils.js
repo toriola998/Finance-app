@@ -10,7 +10,7 @@ export function formatToDollar(amount) {
 }
 
 //import data from '../../data.json'
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 const { financeData: data } = useDataStore()
 import { computed } from 'vue'
 

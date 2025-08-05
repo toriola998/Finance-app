@@ -52,7 +52,7 @@
 import { computed } from 'vue'
 import { formatToDollar, calculateProgress } from '@/utils/shared-utils'
 import { useForm, useField } from 'vee-validate'
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 import { toast } from 'vue3-toastify'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'

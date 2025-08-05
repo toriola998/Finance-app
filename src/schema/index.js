@@ -16,6 +16,7 @@ const loginSchema = yup.object().shape({
 const potSchema = yup.object().shape({
    potName: yup.string().required("Can't be empty").transform(sanitize),
    target: yup.string().required("Can't be empty").transform(sanitize),
+   theme: yup.string().required('Select a theme'),
 })
 
 const budgetSchema = yup.object().shape({

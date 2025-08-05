@@ -38,7 +38,7 @@
 import { computed } from 'vue'
 import { Form } from 'vee-validate'
 import { theme } from '@/data/theme'
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 import { getThemeLabelFormat } from '@/utils/shared-utils'
 import { toast } from 'vue3-toastify'
 import ModalLayout from '../layout/ModalLayout.vue'

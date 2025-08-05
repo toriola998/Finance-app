@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="js">
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 import { getTotalAmountSpent, formatToDollar } from '@/utils/shared-utils'
 import { totalMax, totalSpent } from '@/utils/shared-utils'
 import BudgetsChart from '../shared/BudgetsChart.vue'

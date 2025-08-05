@@ -47,7 +47,7 @@
 <script setup>
 import { ref, provide } from 'vue'
 import { toast } from 'vue3-toastify'
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 import PageLayout from '@/components/layout/PageLayout.vue'
 import AddNewPot from '@/components/pots/AddNewPot.vue'
 import PotsCard from '@/components/pots/PotsCard.vue'

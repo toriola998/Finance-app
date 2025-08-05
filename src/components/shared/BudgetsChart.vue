@@ -16,7 +16,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
 

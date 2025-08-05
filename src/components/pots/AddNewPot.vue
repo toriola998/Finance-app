@@ -34,7 +34,7 @@
 <script setup>
 import { Form } from 'vee-validate'
 import { theme } from '@/data/theme'
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 import ModalLayout from '../layout/ModalLayout.vue'
 import TextInput from '../input-fields/TextInput.vue'
 import SelectInput from '../input-fields/SelectInput.vue'

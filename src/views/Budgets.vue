@@ -40,7 +40,7 @@
 <script setup>
 import { ref, provide } from 'vue'
 import { toast } from 'vue3-toastify'
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from '@/stores'
 import BudgetCard from '@/components/budget/BudgetCard.vue'
 import BudgetSummary from '@/components/budget/BudgetSummary.vue'
 import PageLayout from '@/components/layout/PageLayout.vue'

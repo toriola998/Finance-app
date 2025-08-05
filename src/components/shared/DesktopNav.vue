@@ -25,12 +25,12 @@
                </router-link>
             </li>
 
-            <li class="absolute bottom-14">
+            <!-- <li class="absolute bottom-14">
                <button class="flex-items gap-x-5 px-6 text-grey-300 font-bold">
                   <img src="/assets/icons/icon-minimize-menu.svg" alt="" />
                   Minimize Menu
                </button>
-            </li>
+            </li> -->
          </ul>
       </div>
    </nav>

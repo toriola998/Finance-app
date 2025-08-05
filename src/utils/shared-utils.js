@@ -9,35 +9,33 @@ export function formatToDollar(amount) {
    }).format(amount)
 }
 
-import data from '../../data.json'
+//import data from '../../data.json'
+import { useDataStore } from '@/stores/data'
+const { financeData: data } = useDataStore()
+import { computed } from 'vue'
+
 export function filterByCategory(category) {
    return data.transactions.filter((item) => item.category === category)
 }
 
 export function getTotalAmountSpent(arg) {
    const getTransactionByCategory = filterByCategory(arg)
-
    return getTransactionByCategory.reduce((sum, txn) => sum + txn.amount, 0)
 }
 
-// Total maximum budget across all categories
-export function getTotalMaxBudget(budgets) {
-   return budgets.reduce((total, budget) => total + budget.maximum, 0)
-}
-
-// Total spent across all categories
-export function getTotalAmountSpentAllCategories(budgets) {
-   return budgets.reduce((total, budget) => {
-      const categoryTransactions = filterByCategory(budget.category)
-      const categoryTotal = categoryTransactions.reduce(
-         (sum, txn) => sum + txn.amount,
-         0,
-      )
-      return total + Math.abs(categoryTotal)
+export const totalSpent = computed(() => {
+   return data.budgets.reduce((sum, item) => {
+      const categorySpent = Math.abs(getTotalAmountSpent(item.category))
+      return sum + categorySpent
    }, 0)
-}
+})
+
+export const totalMax = computed(() => {
+   return data.budgets.reduce((sum, item) => sum + Number(item.maximum), 0)
+})
 
 import { themeColors } from '@/data/theme'
+
 export const getThemeLabelFormat = (color) => {
    const match = themeColors.find((t) => {
       return t.color.toLowerCase() === color.toLowerCase()

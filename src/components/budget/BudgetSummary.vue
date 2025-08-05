@@ -1,6 +1,7 @@
 <template>
    <div class="bg-white px-5 py-6 rounded-2xl max-h-fit">
       <p class="font-bold text-grey-900">Spending Summary</p>
+      <BudgetsChart :totalMax="totalMax" :totalSpent="totalSpent" />
 
       <div
          class="flex-items justify-between [&:not(:last-child)]:border-b border-beige-100 py-4"
@@ -28,6 +29,8 @@
 <script setup lang="js">
 import { useDataStore } from '@/stores/data'
 import { getTotalAmountSpent, formatToDollar } from '@/utils/shared-utils'
+import { totalMax, totalSpent } from '@/utils/shared-utils'
+import BudgetsChart from '../shared/BudgetsChart.vue'
 
 const { financeData: data } = useDataStore()
 </script>

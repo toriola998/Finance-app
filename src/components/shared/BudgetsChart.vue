@@ -19,11 +19,11 @@ import { computed } from 'vue'
 import { useDataStore } from '@/stores/data'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
-import {
-   getTotalAmountSpent,
-   getTotalMaxBudget,
-   getTotalAmountSpentAllCategories,
-} from '@/utils/shared-utils'
+
+defineProps({
+   totalSpent: String | Number,
+   totalMax: String | Number,
+})
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -51,16 +51,6 @@ const options = {
       },
    },
 }
-const totalSpent = computed(() => {
-   return data.budgets.reduce((sum, item) => {
-      const categorySpent = Math.abs(getTotalAmountSpent(item.category))
-      return sum + categorySpent
-   }, 0)
-})
-
-const totalMax = computed(() => {
-   return data.budgets.reduce((sum, item) => sum + Number(item.maximum), 0)
-})
 </script>
 
 <style scoped>

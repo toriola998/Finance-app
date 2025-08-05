@@ -20,6 +20,23 @@ export function getTotalAmountSpent(arg) {
    return getTransactionByCategory.reduce((sum, txn) => sum + txn.amount, 0)
 }
 
+// Total maximum budget across all categories
+export function getTotalMaxBudget(budgets) {
+   return budgets.reduce((total, budget) => total + budget.maximum, 0)
+}
+
+// Total spent across all categories
+export function getTotalAmountSpentAllCategories(budgets) {
+   return budgets.reduce((total, budget) => {
+      const categoryTransactions = filterByCategory(budget.category)
+      const categoryTotal = categoryTransactions.reduce(
+         (sum, txn) => sum + txn.amount,
+         0,
+      )
+      return total + Math.abs(categoryTotal)
+   }, 0)
+}
+
 import { themeColors } from '@/data/theme'
 export const getThemeLabelFormat = (color) => {
    const match = themeColors.find((t) => {

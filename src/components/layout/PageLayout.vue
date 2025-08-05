@@ -3,8 +3,8 @@
       class="px-4 pt-6 pb-20 lg:pl-0 lg:pb-0 lg:pt-0 md:pb-28 bg-beige-100 min-h-screen"
    >
       <div class="lg:hidden">
-         <header class="flex-items justify-between">
-            <h1 class="text-grey-900 font-bold text-[32px] mb-8">
+         <header class="flex-items justify-between mb-8">
+            <h1 class="text-grey-900 font-bold text-[32px]">
                {{ title }}
             </h1>
             <slot name="header" />
@@ -19,8 +19,8 @@
       <div class="hidden lg:grid grid-cols-[300px_auto] gap-x-10">
          <DesktopNav :navLinks="navLinks" :isActive="isActive" class="" />
          <div class="w-full py-10 max-w-[1500px] mx-auto">
-            <header class="flex-items justify-between">
-               <h1 class="text-grey-900 font-bold text-[32px] mb-8">
+            <header class="flex-items justify-between mb-8">
+               <h1 class="text-grey-900 font-bold text-[32px]">
                   {{ title }}
                </h1>
                <slot name="header" />

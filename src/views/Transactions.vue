@@ -1,6 +1,6 @@
 <template>
    <PageLayout title="Transactions">
-      <div class="bg-white px-4 py-5 lg:p-8 rounded-xl relative">
+      <div class="bg-white px-4 py-5 xl:p-7 rounded-xl relative">
          <div class="flex-items justify-between mb-6 gap-x-6">
             <SearchInput
                placeholder="Search transaction"

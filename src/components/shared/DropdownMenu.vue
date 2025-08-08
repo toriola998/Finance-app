@@ -1,6 +1,6 @@
 <template>
    <div class="flex-items gap-x-2 relative">
-      <p class="text-sm text-grey-500 hidden lg:block" v-if="title">
+      <p class="text-sm text-grey-500 hidden xl:block" v-if="title">
          {{ title }}
       </p>
       <Menu>

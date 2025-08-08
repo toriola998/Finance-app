@@ -6,7 +6,7 @@
    >
       <div
          :class="`flex-items justify-between py-4 [&:not(:last-child)]:border-b border-grey-100`"
-         v-for="(item, index) in data.transactions.splice(0, 5)"
+         v-for="(item, index) in latestTransactions"
          :key="index"
       >
          <div class="flex-items gap-x-4">
@@ -26,6 +26,12 @@
 
 <script setup>
 import DashboardCardLayout from '../layout/DashboardCardLayout.vue'
-import data from '../../../data.json'
 import { formatDate } from '@/utils/date'
+import { computed } from 'vue'
+import { useDataStore } from '@/stores'
+const { financeData } = useDataStore()
+
+const latestTransactions = computed(() => {
+   return financeData.transactions.slice(0, 5)
+})
 </script>
